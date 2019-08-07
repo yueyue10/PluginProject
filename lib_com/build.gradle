@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            buildConfigField "boolean", 'IS_DEBUG', 'true'
+        }
+        release {
+            buildConfigField "boolean", 'IS_DEBUG', 'false'
+        }
+    }
+    dataBinding {
+        enabled true
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api rootProject.ext.support["appcompat-v7"]
+    api rootProject.ext.support["constraint-layout"]
+
+    api rootProject.ext.support.junit
+    api rootProject.ext.support.test
+    api rootProject.ext.support.espresso
+
+    api rootProject.ext.dependencies["arouter-api"]
+}
