@@ -3,6 +3,8 @@ package com.zyj.plugin.main;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.zyj.plugin.R;
+
 public class MainActivity extends Activity {
 
     @Override
