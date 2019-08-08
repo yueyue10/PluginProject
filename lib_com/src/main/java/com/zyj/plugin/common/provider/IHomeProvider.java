@@ -12,5 +12,5 @@ import com.alibaba.android.arouter.facade.template.IProvider;
  * Update:     <br>
  */
 public interface IHomeProvider extends IProvider {
-    Fragment getMainFindFragment();
+    Fragment getHomeFragment();
 }

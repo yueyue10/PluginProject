@@ -10,6 +10,10 @@ android {
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         debug {
             buildConfigField "boolean", 'IS_DEBUG', 'true'
@@ -18,19 +22,29 @@ android {
             buildConfigField "boolean", 'IS_DEBUG', 'false'
         }
     }
-//    dataBinding {
-//        enabled true
-//    }
 }
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
+    api rootProject.ext.support["design"]
     api rootProject.ext.support["appcompat-v7"]
+    api rootProject.ext.support["recyclerview-v7"]
     api rootProject.ext.support["constraint-layout"]
+    api project(':lib_api')
 
-    api rootProject.ext.support.junit
-    api rootProject.ext.support.test
-    api rootProject.ext.support.espresso
+    api rootProject.ext.dependencies.eventbus
+    api rootProject.ext.dependencies.SmartRefreshLayout
+    api rootProject.ext.dependencies.SmartRefreshHeader
 
-    api rootProject.ext.dependencies["arouter-api"]
+    api rootProject.ext.dependencies["dagger"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    api rootProject.ext.dependencies["lifecycle-extensions"]
+    annotationProcessor rootProject.ext.dependencies["lifecycle-compiler"]
+    //rx管理View的生命周期
+    api(rootProject.ext.dependencies.rxlifecycle) {
+        exclude group: 'com.android.support'
+    }
+    api(rootProject.ext.dependencies["rxlifecycle-components"]) {
+        exclude group: 'com.android.support'
+    }
 }
