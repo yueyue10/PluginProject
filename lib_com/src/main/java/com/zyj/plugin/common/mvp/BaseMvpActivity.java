@@ -3,10 +3,11 @@ package com.zyj.plugin.common.mvp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.zyj.plugin.common.mvp.model.BaseModel;
 import com.zyj.plugin.common.mvp.presenter.BasePresenter;
 
 import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
 
 /**
  * Description: <BaseMvpActivity><br>
@@ -15,25 +16,30 @@ import javax.inject.Inject;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public abstract class BaseMvpActivity<M extends BaseModel,V,P extends BasePresenter<M,V>> extends BaseActivity {
+public abstract class BaseMvpActivity<P extends BasePresenter> extends BaseActivity {
     @Inject
     protected P mPresenter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        injectPresenter();
-        if(mPresenter != null){
-            mPresenter.injectLifecycle(this);
-        }
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-
     }
-    public abstract void injectPresenter();
+
+    @Override
+    protected void onViewCreated() {
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
+    }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-        if(mPresenter != null){
-            mPresenter.detach();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+            mPresenter = null;
         }
+        super.onDestroy();
     }
+
 }

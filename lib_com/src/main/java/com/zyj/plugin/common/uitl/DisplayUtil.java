@@ -3,6 +3,7 @@ package com.zyj.plugin.common.uitl;
 import android.content.Context;
 
 import com.zyj.plugin.common.BaseApplication;
+import com.zyj.plugin.common.data.ApiService;
 
 /**
  * Description: <单位转换工具类><br>

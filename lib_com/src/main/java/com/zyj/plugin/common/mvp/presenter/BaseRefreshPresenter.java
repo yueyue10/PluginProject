@@ -1,9 +1,7 @@
 package com.zyj.plugin.common.mvp.presenter;
 
-import android.content.Context;
-
+import com.zyj.plugin.common.data.DataManager;
 import com.zyj.plugin.common.mvp.contract.BaseRefreshContract;
-import com.zyj.plugin.common.mvp.model.BaseModel;
 import com.zyj.plugin.common.mvp.view.BaseRefreshView;
 
 /**
@@ -13,9 +11,10 @@ import com.zyj.plugin.common.mvp.view.BaseRefreshView;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public abstract class BaseRefreshPresenter<M extends BaseModel, V extends BaseRefreshView<T>, T> extends BasePresenter<M, V> implements BaseRefreshContract.Presenter {
+public abstract class BaseRefreshPresenter<V extends BaseRefreshView<T>, T> extends BasePresenter<V> implements BaseRefreshContract.Presenter {
+    protected DataManager dataManager;
 
-    public BaseRefreshPresenter(Context context, V view, M model) {
-        super(context, view, model);
+    public BaseRefreshPresenter(DataManager dataManager) {
+        super(dataManager);
     }
 }

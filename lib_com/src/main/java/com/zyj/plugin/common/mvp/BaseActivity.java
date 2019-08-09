@@ -1,9 +1,10 @@
 package com.zyj.plugin.common.mvp;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,14 +12,13 @@ import android.view.ViewStub;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.blankj.utilcode.util.ToastUtils;
 import com.zyj.plugin.common.R;
 import com.zyj.plugin.common.event.common.BaseActivityEvent;
 import com.zyj.plugin.common.manager.ActivityManager;
 import com.zyj.plugin.common.mvp.view.BaseView;
 import com.zyj.plugin.common.uitl.NetUtil;
 import com.zyj.plugin.common.view.LoadingInitView;
-import com.zyj.plugin.common.view.LoadingTransView;
 import com.zyj.plugin.common.view.NetErrorView;
 import com.zyj.plugin.common.view.NoDataView;
 
@@ -33,18 +33,16 @@ import org.greenrobot.eventbus.ThreadMode;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public abstract class BaseActivity extends RxAppCompatActivity implements BaseView {
+public abstract class BaseActivity extends AppCompatActivity implements BaseView {
     protected static final String TAG = BaseActivity.class.getSimpleName();
     protected TextView mTxtTitle;
     protected Toolbar mToolbar;
     protected NetErrorView mNetErrorView;
     protected NoDataView mNoDataView;
     protected LoadingInitView mLoadingInitView;
-    protected LoadingTransView mLoadingTransView;
     private ViewStub mViewStubToolbar;
     private ViewStub mViewStubContent;
     private ViewStub mViewStubInitLoading;
-    private ViewStub mViewStubTransLoading;
     private ViewStub mViewStubNoData;
     private ViewStub mViewStubError;
 
@@ -55,6 +53,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseVi
         setContentView(R.layout.activity_root);
         initCommonView();
         ARouter.getInstance().inject(this);
+        onViewCreated();
         initView();
         initListener();
         initData();
@@ -62,13 +61,11 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseVi
         ActivityManager.getInstance().addActivity(this);
     }
 
-
     protected void initCommonView() {
         mViewStubToolbar = findViewById(R.id.view_stub_toolbar);
         mViewStubContent = findViewById(R.id.view_stub_content);
         mViewStubContent = findViewById(R.id.view_stub_content);
         mViewStubInitLoading = findViewById(R.id.view_stub_init_loading);
-        mViewStubTransLoading = findViewById(R.id.view_stub_trans_loading);
         mViewStubError = findViewById(R.id.view_stub_error);
         mViewStubNoData = findViewById(R.id.view_stub_nodata);
 
@@ -124,13 +121,26 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseVi
 
     public abstract void initView();
 
+    protected void onViewCreated() {
+    }
+
     public abstract void initData();
 
     public void initListener() {
     }
 
     @Override
-    public void finishActivity() {
+    public void showToast(String message) {
+        ToastUtils.showShort(message);
+    }
+
+    @Override
+    public void showErrorMsg(String message) {
+        ToastUtils.showShort(message);
+    }
+
+    @Override
+    public void finish() {
         finish();
     }
 
@@ -142,30 +152,20 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseVi
         return true;
     }
 
-    public void showInitLoadView() {
+    public void showLoadView() {
         showInitLoadView(true);
     }
 
-    public void hideInitLoadView() {
+    public void hideLoadView() {
         showInitLoadView(false);
-    }
-
-    @Override
-    public void showTransLoadingView() {
-        showTransLoadingView(true);
-    }
-
-    @Override
-    public void hideTransLoadingView() {
-        showTransLoadingView(false);
     }
 
     public void showNoDataView() {
         showNoDataView(true);
     }
 
-    public void showNoDataView(int resid) {
-        showNoDataView(true, resid);
+    public void showNoDataView(int resId) {
+        showNoDataView(true, resId);
     }
 
     public void hideNoDataView() {
@@ -224,21 +224,12 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseVi
         }
     }
 
-    private void showTransLoadingView(boolean show) {
-        if (mLoadingTransView == null) {
-            View view = mViewStubTransLoading.inflate();
-            mLoadingTransView = view.findViewById(R.id.view_trans_loading);
-        }
-        mLoadingTransView.setVisibility(show ? View.VISIBLE : View.GONE);
-        mLoadingTransView.loading(show);
-    }
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public <T> void onEvent(BaseActivityEvent<T> event) {
     }
 
     @Override
-    public Context getContext() {
+    public Activity getActivityContext() {
         return this;
     }
 }

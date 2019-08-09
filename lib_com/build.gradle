@@ -9,6 +9,11 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -26,25 +31,36 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
+    api rootProject.ext.support.junit
+    api rootProject.ext.support.test
+    api rootProject.ext.support.espresso
+    api(name: 'keyboard', ext: 'aar')
+    api(name: 'pickerview', ext: 'aar')
+    api(name: 'wheelview', ext: 'aar')
+
     api rootProject.ext.support["design"]
     api rootProject.ext.support["appcompat-v7"]
     api rootProject.ext.support["recyclerview-v7"]
     api rootProject.ext.support["constraint-layout"]
-    api project(':lib_api')
 
+    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["adapter-rxjava"]
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies["logging-interceptor"]
+
+    api rootProject.ext.dependencies.glide
     api rootProject.ext.dependencies.eventbus
     api rootProject.ext.dependencies.SmartRefreshLayout
     api rootProject.ext.dependencies.SmartRefreshHeader
+    api rootProject.ext.dependencies["blankj-utilcode"]
 
     api rootProject.ext.dependencies["dagger"]
+    api rootProject.ext.dependencies["dagger-android"]
+    api rootProject.ext.dependencies["dagger-android-support"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
-    api rootProject.ext.dependencies["lifecycle-extensions"]
-    annotationProcessor rootProject.ext.dependencies["lifecycle-compiler"]
-    //rx管理View的生命周期
-    api(rootProject.ext.dependencies.rxlifecycle) {
-        exclude group: 'com.android.support'
-    }
-    api(rootProject.ext.dependencies["rxlifecycle-components"]) {
-        exclude group: 'com.android.support'
-    }
+    annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
+
+    api rootProject.ext.dependencies["arouter-api"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 }

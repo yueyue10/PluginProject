@@ -1,10 +1,11 @@
 package com.zyj.plugin.common;
 
-import android.app.Application;
-
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.zyj.plugin.common.inject.DaggerAppComponent;
 import com.zyj.plugin.common.uitl.log.KLog;
 
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
 
 /**
  * Description: <初始化应用程序><br>
@@ -13,7 +14,7 @@ import com.zyj.plugin.common.uitl.log.KLog;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public class BaseApplication extends Application {
+public class BaseApplication extends DaggerApplication {
     private static BaseApplication mApplication;
 
     @Override
@@ -26,6 +27,11 @@ public class BaseApplication extends Application {
             ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
+    }
+
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return DaggerAppComponent.builder().application(this).build();
     }
 
     public static BaseApplication getInstance() {

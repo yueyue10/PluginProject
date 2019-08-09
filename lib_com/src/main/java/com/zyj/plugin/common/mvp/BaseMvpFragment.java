@@ -1,12 +1,15 @@
 package com.zyj.plugin.common.mvp;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
-import com.zyj.plugin.common.mvp.model.BaseModel;
 import com.zyj.plugin.common.mvp.presenter.BasePresenter;
 
 import javax.inject.Inject;
+
+import dagger.android.support.AndroidSupportInjection;
 
 /**
  * Description: <BaseMvpFragment><br>
@@ -15,24 +18,30 @@ import javax.inject.Inject;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public abstract class BaseMvpFragment<M extends BaseModel,V,P extends BasePresenter<M,V>> extends BaseFragment {
-   @Inject
+public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragment {
+    @Inject
     protected P mPresenter;
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        injectPresenter();
-        if(mPresenter != null){
-            mPresenter.injectLifecycle(mActivity);
+    public void onAttach(Activity activity) {
+//        AndroidSupportInjection.inject(this);
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
         }
     }
 
     @Override
-    public void onDestroy() {
-        if(mPresenter != null){
-            mPresenter.detach();
+    public void onDestroyView() {
+        if (mPresenter != null) {
+            mPresenter.detachView();
+            mPresenter = null;
         }
-        super.onDestroy();
+        super.onDestroyView();
     }
-    public abstract void injectPresenter();
 }

@@ -1,9 +1,17 @@
 package com.zyj.plugin.common.mvp.presenter;
 
-import android.content.Context;
+import android.app.Activity;
 
-import com.trello.rxlifecycle2.LifecycleProvider;
-import com.zyj.plugin.common.mvp.model.BaseModel;
+import com.zyj.plugin.common.data.DataManager;
+import com.zyj.plugin.common.data.bean.BaseResponse;
+import com.zyj.plugin.common.data.bean.BaseResponseV2;
+import com.zyj.plugin.common.data.observer.BaseObserver;
+import com.zyj.plugin.common.data.utils.RxUtils;
+import com.zyj.plugin.common.mvp.view.BaseView;
+
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 
 /**
@@ -13,33 +21,54 @@ import com.zyj.plugin.common.mvp.model.BaseModel;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public abstract class BasePresenter<M extends BaseModel, V> {
-    protected Context mContext;
+public abstract class BasePresenter<V extends BaseView> implements AbstractPresenter<V> {
+
     protected V mView;
-    protected M mModel;
+    protected Activity activity;
+    protected DataManager dataManager;
+    private CompositeDisposable compositeDisposable;
 
-    public BasePresenter(Context context, V view, M model) {
-        mContext = context;
-        mView = view;
-        mModel = model;
+    public BasePresenter(DataManager dataManager) {
+        this.dataManager = dataManager;
     }
-    public void detach() {
-        detachView();
-        detachModel();
+
+    @Override
+    public void attachView(V view) {
+        this.mView = view;
+        this.activity = mView.getActivityContext();
     }
+
+    @Override
     public void detachView() {
-        mView = null;
-    }
-
-
-    public void detachModel() {
-        mModel.destory();
-        mModel = null;
-    }
-
-    public void injectLifecycle(LifecycleProvider lifecycle) {
-        if (mModel != null) {
-            mModel.injectLifecycle(lifecycle);
+        this.mView = null;
+        if (compositeDisposable != null) {
+            compositeDisposable.clear();
         }
+    }
+
+    @Override
+    public void addRxBindingSubscribe(Disposable disposable) {
+        addSubscribe(disposable);
+    }
+
+    protected void addSubscribe(Disposable disposable) {
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
+        compositeDisposable.add(disposable);
+    }
+
+    protected <E> void addSubscribe(Observable<BaseResponse<E>> observable, BaseObserver<E> observer) {
+        Disposable disposable = observable.compose(RxUtils.rxSchedulerHelper())
+                .compose(RxUtils.handleResult())
+                .subscribeWith(observer);
+        addSubscribe(disposable);
+    }
+
+    protected <E> void addSubscribeV2(Observable<BaseResponseV2<E>> observable, BaseObserver<E> observer) {
+        Disposable disposable = observable.compose(RxUtils.rxSchedulerHelper())
+                .compose(RxUtils.handleResultV2())
+                .subscribeWith(observer);
+        addSubscribe(disposable);
     }
 }

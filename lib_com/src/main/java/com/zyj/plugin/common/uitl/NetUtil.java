@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.zyj.plugin.common.BaseApplication;
 
 import static com.zyj.plugin.common.uitl.NetUtil.NetType.NET_4G;
@@ -29,7 +30,7 @@ public class NetUtil {
     public static boolean checkNetToast() {
         boolean isNet = checkNet();
         if (!isNet) {
-            ToastUtil.showToast("网络不给力哦！");
+            ToastUtils.showShort("网络不给力哦！");
         }
         return isNet;
     }
@@ -69,6 +70,7 @@ public class NetUtil {
         }
         return false;
     }
+
     public static NetType isNetWorkState(Context context) {
         ConnectivityManager manager =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -92,5 +94,8 @@ public class NetUtil {
         }
         return NO_NET;
     }
-    public enum NetType{WIFI,NET_4G,NO_NET};
+
+    public enum NetType {WIFI, NET_4G, NO_NET}
+
+    ;
 }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +13,12 @@ import android.view.ViewStub;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.zyj.plugin.common.R;
 import com.zyj.plugin.common.event.common.BaseFragmentEvent;
 import com.zyj.plugin.common.mvp.view.BaseView;
 import com.zyj.plugin.common.uitl.NetUtil;
 import com.zyj.plugin.common.uitl.log.KLog;
 import com.zyj.plugin.common.view.LoadingInitView;
-import com.zyj.plugin.common.view.LoadingTransView;
 import com.zyj.plugin.common.view.NetErrorView;
 import com.zyj.plugin.common.view.NoDataView;
 
@@ -36,7 +35,7 @@ import org.greenrobot.eventbus.ThreadMode;
  */
 public abstract class BaseFragment extends Fragment implements BaseView {
     protected static final String TAG = BaseFragment.class.getSimpleName();
-    protected RxAppCompatActivity mActivity;
+    protected AppCompatActivity mActivity;
     protected View mView;
     protected TextView mTxtTitle;
     protected Toolbar mToolbar;
@@ -44,12 +43,10 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     protected NetErrorView mNetErrorView;
     protected NoDataView mNoDataView;
     protected LoadingInitView mLoadingInitView;
-    protected LoadingTransView mLoadingTransView;
 
     private ViewStub mViewStubToolbar;
     private ViewStub mViewStubContent;
     private ViewStub mViewStubInitLoading;
-    private ViewStub mViewStubTransLoading;
     private ViewStub mViewStubNoData;
     private ViewStub mViewStubError;
     private boolean isViewCreated = false;
@@ -58,7 +55,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActivity = (RxAppCompatActivity) getActivity();
+        mActivity = (AppCompatActivity) getActivity();
         ARouter.getInstance().inject(this);
         EventBus.getDefault().register(this);
     }
@@ -78,7 +75,6 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         mViewStubContent = view.findViewById(R.id.view_stub_content);
         mViewStubContent = view.findViewById(R.id.view_stub_content);
         mViewStubInitLoading = view.findViewById(R.id.view_stub_init_loading);
-        mViewStubTransLoading = view.findViewById(R.id.view_stub_trans_loading);
         mViewStubNoData = view.findViewById(R.id.view_stub_nodata);
         mViewStubError = view.findViewById(R.id.view_stub_error);
 
@@ -115,9 +111,9 @@ public abstract class BaseFragment extends Fragment implements BaseView {
 
     private void lazyLoad() {
         //这里进行双重标记判断,必须确保onCreateView加载完毕且页面可见,才加载数据
-        KLog.v("MYTAG","lazyLoad start...");
-        KLog.v("MYTAG","isViewCreated:"+isViewCreated);
-        KLog.v("MYTAG","isViewVisable"+isViewVisable);
+        KLog.v("MYTAG", "lazyLoad start...");
+        KLog.v("MYTAG", "isViewCreated:" + isViewCreated);
+        KLog.v("MYTAG", "isViewVisable" + isViewVisable);
         if (isViewCreated && isViewVisable) {
             initData();
             //数据加载完毕,恢复标记,防止重复加载
@@ -125,6 +121,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
             isViewVisable = false;
         }
     }
+
     //默认不启用懒加载
     public boolean enableLazyData() {
         return false;
@@ -173,7 +170,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     }
 
     @Override
-    public void finishActivity() {
+    public void finish() {
         mActivity.finish();
     }
 
@@ -185,30 +182,22 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         return R.layout.common_toolbar;
     }
 
-    public void showInitLoadView() {
+    public void showLoadView() {
         showInitLoadView(true);
     }
 
-    public void hideInitLoadView() {
+    public void hideLoadView() {
         showInitLoadView(false);
-    }
-
-    @Override
-    public void showTransLoadingView() {
-        showTransLoadingView(true);
-    }
-
-    @Override
-    public void hideTransLoadingView() {
-        showTransLoadingView(false);
     }
 
     public void showNoDataView() {
         showNoDataView(true);
     }
-    public void showNoDataView(int resid) {
-        showNoDataView(true,resid);
+
+    public void showNoDataView(int resId) {
+        showNoDataView(true, resId);
     }
+
     public void hideNoDataView() {
         showNoDataView(false);
     }
@@ -257,19 +246,11 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         }
         mNoDataView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
-    private void showNoDataView(boolean show,int resid) {
+
+    private void showNoDataView(boolean show, int resid) {
         showNoDataView(show);
-        if(show){
+        if (show) {
             mNoDataView.setNoDataView(resid);
         }
     }
-    private void showTransLoadingView(boolean show) {
-        if (mLoadingTransView == null) {
-            View view = mViewStubTransLoading.inflate();
-            mLoadingTransView = view.findViewById(R.id.view_trans_loading);
-        }
-        mLoadingTransView.setVisibility(show ? View.VISIBLE : View.GONE);
-        mLoadingTransView.loading(show);
-    }
-
 }

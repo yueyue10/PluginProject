@@ -6,9 +6,12 @@ android {
         }
     }
 }
+repositories {
+    flatDir {
+        dirs project(':lib_com').file('libs')
+    }
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':lib_com')
-    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
 }

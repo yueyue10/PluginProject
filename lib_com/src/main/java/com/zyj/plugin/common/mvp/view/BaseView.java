@@ -1,6 +1,6 @@
 package com.zyj.plugin.common.mvp.view;
 
-import android.content.Context;
+import android.app.Activity;
 
 /**
  * Description: <BaseView><br>
@@ -9,10 +9,14 @@ import android.content.Context;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public interface BaseView extends ILoadView,INoDataView,ITransView,INetErrView{
+public interface BaseView extends ILoadView, IHintView, INoDataView, INetErrView {
     void initView();
+
     void initListener();
+
     void initData();
-    void finishActivity();
-    Context getContext();
+
+    void finish();
+
+    Activity getActivityContext();
 }
