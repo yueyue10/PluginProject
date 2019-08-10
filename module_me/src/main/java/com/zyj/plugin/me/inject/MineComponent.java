@@ -1,4 +1,4 @@
-package com.zyj.plugin.home.inject;
+package com.zyj.plugin.me.inject;
 
 import android.app.Application;
 
@@ -15,9 +15,9 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Singleton
 @Component(modules = {
         HttpModule.class,
-        HomeBindingModule.class,
+        MineBindingModule.class,
         AndroidSupportInjectionModule.class,})
-public interface HomeComponent extends AndroidInjector<DaggerApplication> {
+public interface MineComponent extends AndroidInjector<DaggerApplication> {
 
     @Component.Builder
     interface Builder {
@@ -25,6 +25,6 @@ public interface HomeComponent extends AndroidInjector<DaggerApplication> {
         @BindsInstance
         Builder application(Application application);
 
-        HomeComponent build();
+        MineComponent build();
     }
 }

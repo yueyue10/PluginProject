@@ -1,6 +1,7 @@
 package com.zyj.plugin.home.inject;
 
 
+import com.zyj.plugin.home.main.MainActivity;
 import com.zyj.plugin.home.fragment.HomeFragment;
 
 import dagger.Module;
@@ -11,5 +12,8 @@ public abstract class HomeBindingModule {
 
     @ContributesAndroidInjector()
     abstract HomeFragment homefragment();
+
+    @ContributesAndroidInjector()
+    abstract MainActivity mainactivity();
 
 }
