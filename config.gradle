@@ -72,6 +72,7 @@ ext {
             "SmartRefreshLayout"      : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14",
             "SmartRefreshHeader"      : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14",
             "blankj-utilcode"         : "com.blankj:utilcode:1.23.7",
+            "BaseRecyclerViewAdapter" : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34",
     ]
 }
 

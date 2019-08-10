@@ -8,6 +8,8 @@ package com.zyj.plugin.common.mvp.view;
  * Update:     <br>
  */
 public interface IHintView {
+    void showToast(int resId);
+
     void showToast(String message);
 
     void showErrorMsg(String message);

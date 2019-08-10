@@ -124,11 +124,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected void onViewCreated() {
     }
 
-    public abstract void initData();
+    public void initData() {
+    }
 
     public void initListener() {
     }
-
+    @Override
+    public void showToast(int resId) {
+        ToastUtils.showShort(resId);
+    }
     @Override
     public void showToast(String message) {
         ToastUtils.showShort(message);
@@ -140,7 +144,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
     @Override
-    public void finish() {
+    public void finishActivity() {
         finish();
     }
 

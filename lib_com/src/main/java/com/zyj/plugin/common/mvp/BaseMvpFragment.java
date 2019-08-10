@@ -1,15 +1,25 @@
 package com.zyj.plugin.common.mvp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.zyj.plugin.common.mvp.presenter.AbstractPresenter;
 import com.zyj.plugin.common.mvp.presenter.BasePresenter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.AndroidSupportInjection;
+import dagger.android.support.HasSupportFragmentInjector;
 
 /**
  * Description: <BaseMvpFragment><br>
@@ -18,19 +28,19 @@ import dagger.android.support.AndroidSupportInjection;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragment {
+public abstract class BaseMvpFragment<P extends AbstractPresenter> extends BaseFragment{
     @Inject
     protected P mPresenter;
 
     @Override
     public void onAttach(Activity activity) {
-//        AndroidSupportInjection.inject(this);
+        AndroidSupportInjection.inject(this);
         super.onAttach(activity);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
@@ -44,4 +54,5 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragm
         }
         super.onDestroyView();
     }
+
 }

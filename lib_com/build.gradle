@@ -9,11 +9,6 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-            }
-        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -53,6 +48,7 @@ dependencies {
     api rootProject.ext.dependencies.eventbus
     api rootProject.ext.dependencies.SmartRefreshLayout
     api rootProject.ext.dependencies.SmartRefreshHeader
+    api rootProject.ext.dependencies.BaseRecyclerViewAdapter
     api rootProject.ext.dependencies["blankj-utilcode"]
 
     api rootProject.ext.dependencies["dagger"]
@@ -62,5 +58,4 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
 
     api rootProject.ext.dependencies["arouter-api"]
-    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 }

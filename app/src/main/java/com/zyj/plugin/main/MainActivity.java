@@ -5,27 +5,31 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.LogUtils;
 import com.jpeng.jptabbar.JPTabBar;
 import com.jpeng.jptabbar.OnTabSelectListener;
 import com.zyj.plugin.R;
 import com.zyj.plugin.common.mvp.BaseActivity;
+import com.zyj.plugin.common.mvp.BaseMvpActivity;
 import com.zyj.plugin.common.provider.IHomeProvider;
 import com.zyj.plugin.common.provider.IMeProvider;
+import com.zyj.plugin.fragment.HomeFragment;
 
 import java.util.ArrayList;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseMvpActivity<MainPresenter> implements MainContract.View {
 
-    @Autowired(name = "/find/main")
+    @Autowired(name = "/home/main")
     IHomeProvider mHomeProvider;
 
-    @Autowired(name = "/me/main")
+    @Autowired(name = "/main/mine")
     IMeProvider mMeProvider;
 
     JPTabBar tabBar;
     View middleView;
     private int mLastFgIndex;
-    private Fragment mHomeFragment;
+    private HomeFragment mHomeFragment;
     private Fragment mMineFragment;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
 
@@ -52,16 +56,9 @@ public class MainActivity extends BaseActivity {
         switchFragment(0);
     }
 
-    @Override
-    public void initData() {
-
-    }
-
     private void initTab() {
-        if (mHomeProvider != null) {
-            mHomeFragment = mHomeProvider.getHomeFragment();
-            mFragments.add(mHomeFragment);
-        }
+        mHomeFragment=HomeFragment.newInstance();
+        mFragments.add(mHomeFragment);
         if (mMeProvider != null) {
             mMineFragment = mMeProvider.getMineFragment();
             mFragments.add(mMineFragment);
@@ -73,6 +70,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onTabSelect(int index) {
                 switchFragment(index);
+//                ARouter.getInstance().build("/home/mainAc").navigation();
             }
 
             @Override
@@ -103,4 +101,5 @@ public class MainActivity extends BaseActivity {
         ft.show(targetFg);
         ft.commitAllowingStateLoss();
     }
+
 }

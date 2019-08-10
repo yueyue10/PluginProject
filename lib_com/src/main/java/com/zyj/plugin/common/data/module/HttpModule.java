@@ -4,6 +4,7 @@ package com.zyj.plugin.common.data.module;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.zyj.plugin.common.BuildConfig;
 import com.zyj.plugin.common.data.API;
 import com.zyj.plugin.common.data.ApiService;
@@ -26,7 +27,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class HttpModule {
-
     @Provides
     @Singleton
     DataManager provideDataManager(ApiService apiService) {
@@ -35,15 +35,32 @@ public class HttpModule {
 
     @Singleton
     @Provides
-    @AppUrl
-    ApiService provideApiService(OkHttpClient client) {
-        return createRetrofit(client, API.BASE_URL);
+    ApiService provideApiService(@AppUrl Retrofit retrofit) {
+        return retrofit.create(ApiService.class);
     }
 
     @Singleton
     @Provides
-    OkHttpClient provideClient() {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+    @AppUrl
+    Retrofit provideRetrofit(Retrofit.Builder builder, OkHttpClient client) {
+        return createRetrofit(builder, client, API.BASE_URL);
+    }
+
+    @Singleton
+    @Provides
+    Retrofit.Builder provideRetrofitBuilder() {
+        return new Retrofit.Builder();
+    }
+
+    @Singleton
+    @Provides
+    OkHttpClient.Builder provideOkHttpBuilder() {
+        return new OkHttpClient.Builder();
+    }
+
+    @Singleton
+    @Provides
+    OkHttpClient provideClient(OkHttpClient.Builder builder) {
         if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -56,7 +73,7 @@ public class HttpModule {
                     .addHeader("companyId", "6");
             if (!TextUtils.isEmpty(SpManager.getInstance().getToken()))
                 requestBuilder.addHeader("X-Token", SpManager.getInstance().getToken());
-            Log.d("HttpModule", SpManager.getInstance().getToken());
+            LogUtils.d(SpManager.getInstance().getToken());
             Request request = requestBuilder.build();
             return chain.proceed(request);
         });
@@ -70,12 +87,12 @@ public class HttpModule {
         return builder.build();
     }
 
-    private ApiService createRetrofit(OkHttpClient client, String url) {
-        return new Retrofit.Builder()
+    private Retrofit createRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {
+        return builder
                 .baseUrl(url)
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .build().create(ApiService.class);
+                .build();
     }
 }

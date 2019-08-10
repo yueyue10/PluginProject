@@ -14,7 +14,7 @@ import com.zyj.plugin.home.fragment.HomeFragment;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-@Route(path = "/main/home", name = "首页")
+@Route(path = "/home/main", name = "首页")
 public class HomeProvider implements IHomeProvider {
 
     @Override

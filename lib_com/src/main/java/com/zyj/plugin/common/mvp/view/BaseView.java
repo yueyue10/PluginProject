@@ -16,7 +16,7 @@ public interface BaseView extends ILoadView, IHintView, INoDataView, INetErrView
 
     void initData();
 
-    void finish();
+    void finishActivity();
 
     Activity getActivityContext();
 }

@@ -26,6 +26,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+//    lintOptions {
+//        abortOnError false
+//    }
 }
 repositories {
     flatDir {
@@ -40,4 +43,7 @@ dependencies {
         implementation project(':module_me')
     }
     implementation rootProject.ext.dependencies["JPTabBar"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
 }

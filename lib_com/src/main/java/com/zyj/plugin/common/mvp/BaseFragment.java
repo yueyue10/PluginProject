@@ -1,10 +1,12 @@
 package com.zyj.plugin.common.mvp;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.view.ViewStub;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zyj.plugin.common.R;
 import com.zyj.plugin.common.event.common.BaseFragmentEvent;
 import com.zyj.plugin.common.mvp.view.BaseView;
@@ -164,13 +168,35 @@ public abstract class BaseFragment extends Fragment implements BaseView {
 
     public abstract void initData();
 
-    public abstract String getToolbarTitle();
-
     public void initListener() {
     }
 
     @Override
-    public void finish() {
+    public Activity getActivityContext() {
+        return mActivity;
+    }
+
+    public String getToolbarTitle() {
+        return null;
+    }
+
+    @Override
+    public void showToast(int resId) {
+        ToastUtils.showShort(resId);
+    }
+
+    @Override
+    public void showToast(String message) {
+        ToastUtils.showShort(message);
+    }
+
+    @Override
+    public void showErrorMsg(String message) {
+        ToastUtils.showShort(message);
+    }
+
+    @Override
+    public void finishActivity() {
         mActivity.finish();
     }
 
@@ -219,7 +245,6 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         mLoadingInitView.loading(show);
     }
 
-
     private void showNetWorkErrView(boolean show) {
         if (mNetErrorView == null) {
             View view = mViewStubError.inflate();
@@ -252,5 +277,13 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         if (show) {
             mNoDataView.setNoDataView(resid);
         }
+    }
+
+    public RecyclerView initRecyclerView(int resId, BaseQuickAdapter adapter, RecyclerView.LayoutManager layoutManager) {
+        RecyclerView recyclerView = mView.findViewById(resId);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        return recyclerView;
     }
 }
