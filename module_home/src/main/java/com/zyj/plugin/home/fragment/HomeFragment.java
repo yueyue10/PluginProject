@@ -1,6 +1,5 @@
 package com.zyj.plugin.home.fragment;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
@@ -35,7 +34,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     int currentImg = 0;
     int vpSize = 0;
 
-    public static Fragment newInstance() {
+    public static HomeFragment newInstance() {
         return new HomeFragment();
     }
 
@@ -47,6 +46,9 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     @Override
     public void initView(View view) {
         initRecyclerView();
+        viewPager = view.findViewById(R.id.viewPager);
+        dotLayout = view.findViewById(R.id.dotLayout);
+        picked_news_iv = view.findViewById(R.id.picked_news_iv);
     }
 
     private void initRecyclerView() {
@@ -83,7 +85,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @Override
     public void getHomeDataSuccess(HomeBean homeAdBean) {
-        this.homeBean = homeBean;
+        this.homeBean = homeAdBean;
         vpSize = homeBean.getAdvertisementList().size();
         homePagerAdapter = new HomePagerAdapter(mActivity, homeBean.getAdvertisementList());
 //        homePagerAdapter.setOnClickListener(homeAdBean -> {

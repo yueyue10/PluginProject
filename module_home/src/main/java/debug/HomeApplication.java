@@ -21,7 +21,8 @@ public class HomeApplication extends BaseApplication {
 
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return DaggerHomeComponent.builder().build();
+//        return DaggerHomeComponent.builder().build();
+        return null;
     }
 
 }

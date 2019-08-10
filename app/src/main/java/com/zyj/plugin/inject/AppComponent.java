@@ -2,8 +2,8 @@ package com.zyj.plugin.inject;
 
 import android.app.Application;
 
-import com.zyj.plugin.common.BaseApplication;
 import com.zyj.plugin.common.data.module.HttpModule;
+import com.zyj.plugin.home.inject.HomeBindingModule;
 
 import javax.inject.Singleton;
 
@@ -16,7 +16,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Singleton
 @Component(modules = {
         HttpModule.class,
-        FragmentBindingModule.class,
+        AppBindingModule.class,
+        HomeBindingModule.class,
         AndroidSupportInjectionModule.class,})
 public interface AppComponent extends AndroidInjector<DaggerApplication> {
 

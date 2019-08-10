@@ -7,7 +7,7 @@ import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 @Module
-public abstract class FragmentBindingModule {
+public abstract class HomeBindingModule {
 
     @ContributesAndroidInjector()
     abstract HomeFragment homefragment();
