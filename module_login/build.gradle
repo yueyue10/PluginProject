@@ -1,7 +1,11 @@
-apply from: "../module.build.gradle"
+if (inLogin.toBoolean()) {
+    apply from: "./login.gradle"
+} else {
+    apply from: "../module.build.gradle"
+}
 android {
     defaultConfig {
-        if (isModule.toBoolean()) {
+        if (!inLogin.toBoolean()) {
             applicationId "com.zyj.plugin.login"
         }
     }

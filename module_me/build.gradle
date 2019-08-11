@@ -14,6 +14,9 @@ repositories {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':lib_com')
+    if (inLogin.toBoolean()) {
+        api project(':module_login')
+    }
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]

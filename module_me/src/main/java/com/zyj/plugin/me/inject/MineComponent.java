@@ -3,6 +3,7 @@ package com.zyj.plugin.me.inject;
 import android.app.Application;
 
 import com.zyj.plugin.common.data.module.HttpModule;
+import com.zyj.plugin.login.inject.LoginBindingModule;
 
 import javax.inject.Singleton;
 
@@ -16,6 +17,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         HttpModule.class,
         MineBindingModule.class,
+        LoginBindingModule.class,
         AndroidSupportInjectionModule.class,})
 public interface MineComponent extends AndroidInjector<DaggerApplication> {
 
