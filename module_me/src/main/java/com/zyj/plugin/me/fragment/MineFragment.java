@@ -2,6 +2,7 @@ package com.zyj.plugin.me.fragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
@@ -12,14 +13,17 @@ import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.zyj.plugin.common.Constants;
 import com.zyj.plugin.common.data.API;
 import com.zyj.plugin.common.data.bean.ResourceBean;
 import com.zyj.plugin.common.data.bean.UserInfo;
 import com.zyj.plugin.common.data.local.SpManager;
 import com.zyj.plugin.common.mvp.BaseMvpFragment;
 import com.zyj.plugin.common.view.CircleImageView;
+import com.zyj.plugin.login.utils.LoginUtils;
 import com.zyj.plugin.me.R;
 import com.zyj.plugin.me.R2;
+import com.zyj.plugin.me.order.OrderListActivity;
 
 import java.util.List;
 
@@ -63,42 +67,42 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
 
     @SuppressLint("MissingPermission")
     public void initListener() {
-//        mineModuleAdapter.setOnItemClickListener((adapter, view, position) -> {
-//            switch (resourceBeans.get(position).getName()) {
-//                case "我的订单":
-//                    if (isLogin(Constants.REQUEST_CODE_LOGIN)) {
-//                        startActivity(new Intent(_mActivity, OrderListActivity.class));
+        mineModuleAdapter.setOnItemClickListener((adapter, view, position) -> {
+            switch (resourceBeans.get(position).getName()) {
+                case "我的订单":
+                    if (LoginUtils.isLogin(mActivity, Constants.REQUEST_CODE_LOGIN)) {
+                        startActivity(new Intent(mActivity, OrderListActivity.class));
+                    }
+                    break;
+                case "在线缴费记录":
+//                    if (LoginUtils.isLogin(mActivity, Constants.REQUEST_CODE_LOGIN)) {
+//                        startActivity(new Intent(mActivity, PayOnLineHistoryActivity.class));
 //                    }
-//                    break;
-//                case "在线缴费记录":
-//                    if (isLogin(Constants.REQUEST_CODE_LOGIN)) {
-//                        startActivity(new Intent(_mActivity, PayOnLineHistoryActivity.class));
-//                    }
-//                    break;
-//                case "推荐给好友":
+                    break;
+                case "推荐给好友":
 //                    if (shareFragment == null) {
 //                        shareFragment = ShareFragment.getInstance(getString(R.string.app_name),
 //                                getString(R.string.share_content), download_url, null);
 //                    }
-////                    shareFragment.show(_mActivity.getSupportFragmentManager(), "ShareFragment");
-//                    break;
-//                case "常用信息":
-//                    if (isLogin(Constants.REQUEST_CODE_LOGIN)) {
-//                        startActivity(new Intent(_mActivity, ComInfoActivity.class));
+//                    shareFragment.show(mActivity.getSupportFragmentManager(), "ShareFragment");
+                    break;
+                case "常用信息":
+//                    if (LoginUtils.isLogin(mActivity, Constants.REQUEST_CODE_LOGIN)) {
+//                        startActivity(new Intent(mActivity, ComInfoActivity.class));
 //                    }
-//                    break;
-//                case "意见反馈":
-//                    startActivity(new Intent(_mActivity, FeedbackActivity.class));
-//                    break;
-//                case "关于梦廊坊":
+                    break;
+                case "意见反馈":
+//                    startActivity(new Intent(mActivity, FeedbackActivity.class));
+                    break;
+                case "关于梦廊坊":
 //                    Intent intent_about = new Intent(getContext(), AboutUsActivity.class);
 //                    startActivity(intent_about);
-//                    break;
-//                case "设置":
-//                    startActivity(new Intent(_mActivity, SettingActivity.class));
-//                    break;
-//            }
-//        });
+                    break;
+                case "设置":
+//                    startActivity(new Intent(mActivity, SettingActivity.class));
+                    break;
+            }
+        });
     }
 
     /**
@@ -160,4 +164,5 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
         Glide.with(mActivity).load(picUrl).apply(new RequestOptions()
                 .error(R.mipmap.ic_launcher)).into(user_icon_iv);
     }
+
 }

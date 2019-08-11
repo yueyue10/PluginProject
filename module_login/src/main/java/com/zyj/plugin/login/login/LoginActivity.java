@@ -58,8 +58,8 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
 
     private void initCode() {
         timeCode.setAllowRun(false);
-        timeCode.setTimeColor(getResources().getColor(R2.color.bg_button_orange));
-        timeCode.setBackgroundColor(getResources().getColor(R2.color.bg_button_orange_30));
+        timeCode.setTimeColor(getResources().getColor(R.color.bg_button_orange));
+        timeCode.setBackgroundColor(getResources().getColor(R.color.bg_button_orange_30));
         etPhone.addTextChangedListener(new MyTextWatcher() {
             @Override
             public void afterTextChanged(Editable editable) {
@@ -77,21 +77,21 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
 
     private void initTitle() {
         ivLeft.setVisibility(View.VISIBLE);
-        tvTitle.setText(getString(R2.string.login));
-        tvRight.setText(getString(R2.string.register));
+        tvTitle.setText(getString(R.string.login));
+        tvRight.setText(getString(R.string.register));
         tvRight.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void changeButtonClickStatus(boolean clickable) {
         tvLogin.setClickable(clickable);
-        tvLogin.setBackgroundColor(getResources().getColor(clickable ? R2.color.bg_button_orange : R2.color.bg_button_orange_30));
+        tvLogin.setBackgroundColor(getResources().getColor(clickable ? R.color.bg_button_orange : R.color.bg_button_orange_30));
     }
 
     @Override
     public void changeimeCodeStatus(boolean clickable) {
         timeCode.setAllowRun(clickable);
-        timeCode.setBackgroundColor(getResources().getColor(clickable ? R2.color.bg_button_orange : R2.color.bg_button_orange_30));
+        timeCode.setBackgroundColor(getResources().getColor(clickable ? R.color.bg_button_orange : R.color.bg_button_orange_30));
     }
 
 
@@ -99,9 +99,9 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     public void showCodeLoginView() {
         timeCode.setVisibility(View.VISIBLE);
         ivPasswordVisible.setVisibility(View.GONE);
-        tvChangeLoginType.setText(R2.string.text_change_login_password);
+        tvChangeLoginType.setText(R.string.text_change_login_password);
         tvForgetPassword.setVisibility(View.GONE);
-        etCode.setHint(R2.string.et_hint_code);
+        etCode.setHint(R.string.et_hint_code);
         etCode.setText("");
         etCode.setInputType(InputType.TYPE_CLASS_NUMBER);
         etCode.setFilters(new InputFilter[]{new InputFilter.LengthFilter(6)});
@@ -112,8 +112,8 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
         timeCode.setVisibility(View.GONE);
         ivPasswordVisible.setVisibility(View.VISIBLE);
         tvForgetPassword.setVisibility(View.VISIBLE);
-        tvChangeLoginType.setText(R2.string.text_change_login_code);
-        etCode.setHint(getString(R2.string.et_hint_input_password));
+        tvChangeLoginType.setText(R.string.text_change_login_code);
+        etCode.setHint(getString(R.string.et_hint_input_password));
         etCode.setText("");
         showPasswordVisible(false);
         etCode.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12)});
@@ -128,8 +128,8 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
 
     @Override
     public void showGetCodeSuccess(String resultMessage) {
-        showToast(R2.string.get_code_success);
-        timeCode.setBackgroundResource(R2.color.bg_button_orange_30);
+        showToast(R.string.get_code_success);
+        timeCode.setBackgroundResource(R.color.bg_button_orange_30);
         timeCode.startRun();
     }
 
@@ -141,7 +141,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
 
     @Override
     public void showGetCodeError() {
-        showNotifyDialog(R2.string.error_get_code);
+        showNotifyDialog(R.string.error_get_code);
     }
 
     @Override
@@ -151,17 +151,17 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
 
     @Override
     public void showPhoneEmptyError() {
-        showNotifyDialog(R2.string.error_phone_empty);
+        showNotifyDialog(R.string.error_phone_empty);
     }
 
     @Override
     public void showPhoneNumberError() {
-        showNotifyDialog(R2.string.error_phone_number);
+        showNotifyDialog(R.string.error_phone_number);
     }
 
     @Override
     public void showPhoneFormatError() {
-        showNotifyDialog(R2.string.error_phone_format);
+        showNotifyDialog(R.string.error_phone_format);
     }
 
     @OnClick({R2.id.iv_left, R2.id.tv_right, R2.id.time_code, R2.id.iv_password_visible, R2.id.tv_login, R2.id.tv_change_login_type, R2.id.tv_forget_password})

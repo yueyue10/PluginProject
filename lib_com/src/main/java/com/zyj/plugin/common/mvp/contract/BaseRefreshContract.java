@@ -2,6 +2,8 @@ package com.zyj.plugin.common.mvp.contract;
 
 import com.zyj.plugin.common.mvp.view.AbstractView;
 
+import java.util.ArrayList;
+
 /**
  * Description: <基本的刷新数据协议><br>
  * Author:      mxdl<br>
@@ -11,58 +13,21 @@ import com.zyj.plugin.common.mvp.view.AbstractView;
  */
 public interface BaseRefreshContract {
     interface Presenter {
-        /**
-         * 刷新数据
-         */
-        void refreshData();
+        void getRefreshData();
 
-        /**
-         * 加载更多
-         */
-        void loadMoreData();
+        void getLoadMoreData();
     }
 
     interface View extends AbstractView {
-        /**
-         * 是否启用下拉刷新
-         *
-         * @param b
-         */
+
+        void stopRefreshView();
+
         void enableRefresh(boolean b);
 
-        /**
-         * 是否启用上拉加载更多
-         */
         void enableLoadMore(boolean b);
 
-        /**
-         * 刷新回调
-         */
-        void onRefreshEvent();
-
-        /**
-         * 加载更多的回调
-         */
-        void onLoadMoreEvent();
-
-        /**
-         * 自动加载的事件
-         */
-        void onAutoLoadEvent();
-
-        /**
-         * 停止刷新
-         */
-        void stopRefresh();
-
-        /**
-         * 停止加载更多
-         */
-        void stopLoadMore();
-
-        /**
-         * 自动加载数据
-         */
         void autoLoadData();
+
+        void clearData(ArrayList<?>... lists);
     }
 }

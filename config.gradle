@@ -73,6 +73,8 @@ ext {
             "SmartRefreshHeader"      : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14",
             "blankj-utilcode"         : "com.blankj:utilcode:1.23.7",
             "BaseRecyclerViewAdapter" : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34",
+            //微信
+            "wechat-sdk"              : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.4.0",
     ]
 }
 

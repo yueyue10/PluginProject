@@ -5,10 +5,12 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -27,6 +29,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
+
+import static android.view.View.OVER_SCROLL_NEVER;
 
 /**
  * Description: <BaseActivity><br>
@@ -47,12 +51,14 @@ public abstract class BaseActivity extends AppCompatActivity implements Abstract
     private ViewStub mViewStubInitLoading;
     private ViewStub mViewStubNoData;
     private ViewStub mViewStubError;
+    public Activity mActivity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_root);
+        mActivity = this;
         initCommonView();
         ButterKnife.bind(this);
         ARouter.getInstance().inject(this);
@@ -240,5 +246,23 @@ public abstract class BaseActivity extends AppCompatActivity implements Abstract
     @Override
     public Activity getActivityContext() {
         return this;
+    }
+
+    public void setTitleBack(String title) {
+        TextView textView = findViewById(R.id.tv_title);
+        ImageView imageView = findViewById(R.id.iv_left);
+        textView.setText(title);
+        imageView.setOnClickListener(v -> finish());
+        textView.setVisibility(View.VISIBLE);
+        imageView.setVisibility(View.VISIBLE);
+    }
+
+    public RecyclerView initRecyclerView(int resId, RecyclerView.Adapter adapter, RecyclerView.LayoutManager layoutManager) {
+        RecyclerView recyclerView = findViewById(resId);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setOverScrollMode(OVER_SCROLL_NEVER);
+        return recyclerView;
     }
 }

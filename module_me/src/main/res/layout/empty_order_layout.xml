@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/empty_order_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="112dp"
+        android:drawableTop="@mipmap/icon_empty_order"
+        android:drawablePadding="21dp"
+        android:gravity="center_horizontal"
+        android:text="暂无订单"
+        android:textColor="#3F3D56"
+        android:textSize="16sp" />
+
+</RelativeLayout>

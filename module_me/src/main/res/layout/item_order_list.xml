@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/order_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="19dp"
+        android:textColor="#111111"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="下单时间：2018-10-07" />
+
+    <TextView
+        android:id="@+id/order_status_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="21dp"
+        android:textColor="#EBA542"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/order_time_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/order_time_tv"
+        tools:text="待支付" />
+
+    <View
+        android:id="@+id/divider_line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="19dp"
+        android:background="#E5E5E5"
+        app:layout_constraintTop_toBottomOf="@+id/order_time_tv" />
+
+    <ImageView
+        android:id="@+id/order_car_iv"
+        android:layout_width="105dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/icon_order_car"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_line1" />
+
+    <TextView
+        android:id="@+id/park_location_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="@dimen/dp_25"
+        android:layout_marginRight="21dp"
+        android:maxLines="2"
+        android:textColor="#555555"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/order_car_iv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_line1"
+        tools:text="冀A NB345 梦廊坊地下停车场A 区001" />
+
+    <TextView
+        android:id="@+id/park_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/order_car_iv"
+        app:layout_constraintLeft_toRightOf="@+id/order_car_iv"
+        tools:text="17:20 -19:20" />
+
+    <View
+        android:id="@+id/divider_line2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="#E5E5E5"
+        app:layout_constraintTop_toBottomOf="@+id/order_car_iv" />
+
+    <TextView
+        android:id="@+id/order_price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="23dp"
+        android:textColor="#111111"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_line2"
+        tools:text="实付金额：¥280" />
+
+    <TextView
+        android:id="@+id/cancel_order_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="17dp"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingTop="10dp"
+        android:paddingRight="@dimen/dp_16"
+        android:paddingBottom="10dp"
+        android:text="取消订单"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/pay_now_tv"
+        app:layout_constraintTop_toBottomOf="@+id/divider_line2" />
+
+    <TextView
+        android:id="@+id/pay_now_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_20"
+        android:background="#F3A230"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingTop="10dp"
+        android:paddingRight="@dimen/dp_16"
+        android:paddingBottom="10dp"
+        android:text="立即支付"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_line2" />
+</android.support.constraint.ConstraintLayout>

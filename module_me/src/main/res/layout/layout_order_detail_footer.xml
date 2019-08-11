@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/divider_line0"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#F5F5F5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/order_price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="19dp"
+            android:text="订单金额"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider_line0" />
+
+        <TextView
+            android:id="@+id/order_price_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="@dimen/dp_21"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/order_price_tv"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/order_price_tv"
+            tools:text="¥ 86" />
+
+        <TextView
+            android:id="@+id/discount_price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="9dp"
+            android:text="优惠金额"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_price_tv" />
+
+        <TextView
+            android:id="@+id/discount_price_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="@dimen/dp_21"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/discount_price_tv"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/discount_price_tv"
+            tools:text="-¥ 20" />
+
+        <View
+            android:id="@+id/divider_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="19dp"
+            android:background="#E1E1E1"
+            app:layout_constraintTop_toBottomOf="@+id/discount_price_tv" />
+
+        <TextView
+            android:id="@+id/real_pay_price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="18dp"
+            android:text="实付金额"
+            android:textColor="#1B1717"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider_line" />
+
+        <TextView
+            android:id="@+id/real_pay_price_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:textColor="#1B1717"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/real_pay_price_tv"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/real_pay_price_tv"
+            tools:text="￥ 66" />
+
+        <View
+            android:id="@+id/divider_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="19dp"
+            android:background="#E1E1E1"
+            app:layout_constraintTop_toBottomOf="@+id/real_pay_price_tv" />
+
+        <View
+            android:id="@+id/divider_line3"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#F5F5F5"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/divider_line1" />
+
+        <TextView
+            android:id="@+id/cancel_order_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="17dp"
+            android:paddingTop="10dp"
+            android:paddingRight="17dp"
+            android:paddingBottom="10dp"
+            android:text="取消订单"
+            android:textColor="#1B1717"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider_line1" />
+    </android.support.constraint.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/pay_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/withe"
+        android:paddingBottom="@dimen/dp_16">
+
+        <View
+            android:id="@+id/divider_line2"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#F5F5F5" />
+
+        <TextView
+            android:id="@+id/pay_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_44"
+            android:layout_below="@+id/divider_line2"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:background="#F3A230"
+            android:gravity="center"
+            android:text="@string/go_to_pay_in_order_detail"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/notice_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pay_tv"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:background="@mipmap/notice" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pay_tv"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_toRightOf="@+id/notice_iv"
+            android:text="@string/hint_overtime_order_detail"
+            android:textColor="#1C1717"
+            android:textSize="13sp" />
+    </RelativeLayout>
+</LinearLayout>
