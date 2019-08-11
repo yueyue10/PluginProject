@@ -16,7 +16,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.zyj.plugin.common.R;
 import com.zyj.plugin.common.event.common.BaseActivityEvent;
 import com.zyj.plugin.common.manager.ActivityManager;
-import com.zyj.plugin.common.mvp.view.BaseView;
+import com.zyj.plugin.common.mvp.view.AbstractView;
 import com.zyj.plugin.common.uitl.NetUtil;
 import com.zyj.plugin.common.view.LoadingInitView;
 import com.zyj.plugin.common.view.NetErrorView;
@@ -26,6 +26,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import butterknife.ButterKnife;
+
 /**
  * Description: <BaseActivity><br>
  * Author:      gxl<br>
@@ -33,7 +35,7 @@ import org.greenrobot.eventbus.ThreadMode;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public abstract class BaseActivity extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity extends AppCompatActivity implements AbstractView {
     protected static final String TAG = BaseActivity.class.getSimpleName();
     protected TextView mTxtTitle;
     protected Toolbar mToolbar;
@@ -52,6 +54,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_root);
         initCommonView();
+        ButterKnife.bind(this);
         ARouter.getInstance().inject(this);
         onViewCreated();
         initView();
@@ -129,10 +132,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     public void initListener() {
     }
+
     @Override
     public void showToast(int resId) {
         ToastUtils.showShort(resId);
     }
+
     @Override
     public void showToast(String message) {
         ToastUtils.showShort(message);
@@ -153,14 +158,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
     public boolean enableToolbar() {
-        return true;
+        return false;
     }
 
-    public void showLoadView() {
+    public void showLoading() {
         showInitLoadView(true);
     }
 
-    public void hideLoadView() {
+    public void hideLoading() {
         showInitLoadView(false);
     }
 

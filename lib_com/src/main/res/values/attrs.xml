@@ -67,4 +67,13 @@
         <attr name="civ_fill_color" format="color" />
         <attr name="civ_circle_background_color" format="color" />
     </declare-styleable>
+    <declare-styleable name="CountTimeView">
+        <attr name="inittext" format="string" />
+        <attr name="prefixruntext" format="string" />
+        <attr name="suffixruntext" format="string" />
+        <attr name="finishtext" format="string" />
+        <attr name="totaltime" format="integer" />
+        <attr name="onetime" format="integer" />
+        <attr name="timecolor" format="color|reference" />
+    </declare-styleable>
 </resources>

@@ -3,7 +3,7 @@ package com.zyj.plugin.home.fragment;
 
 import com.zyj.plugin.common.data.bean.HomeBean;
 import com.zyj.plugin.common.mvp.presenter.AbstractPresenter;
-import com.zyj.plugin.common.mvp.view.BaseView;
+import com.zyj.plugin.common.mvp.view.AbstractView;
 
 /**
  * @author quchao
@@ -12,7 +12,7 @@ import com.zyj.plugin.common.mvp.view.BaseView;
 
 public interface HomeContract {
 
-    interface View extends BaseView {
+    interface View extends AbstractView {
         void getHomeDataSuccess(HomeBean homeAdBean);
     }
 

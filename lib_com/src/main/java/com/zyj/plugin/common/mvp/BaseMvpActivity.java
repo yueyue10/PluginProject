@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.zyj.plugin.common.mvp.presenter.AbstractPresenter;
-import com.zyj.plugin.common.mvp.presenter.BasePresenter;
+import com.zyj.plugin.common.uitl.DialogUtil;
 
 import javax.inject.Inject;
 
@@ -47,6 +47,14 @@ public abstract class BaseMvpActivity<P extends AbstractPresenter> extends BaseA
             mPresenter = null;
         }
         super.onDestroy();
+    }
+
+    public void showNotifyDialog(String message) {
+        DialogUtil.showNotifyDialog(this, message);
+    }
+
+    public void showNotifyDialog(int resourceId) {
+        DialogUtil.showNotifyDialog(this, getString(resourceId));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.zyj.plugin.common.mvp.presenter;
 
 
-import com.zyj.plugin.common.mvp.view.BaseView;
+import com.zyj.plugin.common.mvp.view.AbstractView;
 
 import io.reactivex.disposables.Disposable;
 
@@ -9,7 +9,7 @@ import io.reactivex.disposables.Disposable;
  * Presenter 基类
  * 绑定和解绑view
  */
-public interface AbstractPresenter<V extends BaseView> {
+public interface AbstractPresenter<V extends AbstractView> {
 
     /**
      * 注入View

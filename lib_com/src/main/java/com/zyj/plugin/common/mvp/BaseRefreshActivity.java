@@ -7,7 +7,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.zyj.plugin.common.mvp.presenter.BaseRefreshPresenter;
-import com.zyj.plugin.common.mvp.view.BaseRefreshView;
+import com.zyj.plugin.common.mvp.view.AbstractRefreshView;
 
 /**
  * Description: <下拉刷新、上拉加载更多的Activity><br>
@@ -16,7 +16,7 @@ import com.zyj.plugin.common.mvp.view.BaseRefreshView;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public abstract class BaseRefreshActivity<V extends BaseRefreshView<T>, P extends BaseRefreshPresenter<V, T>, T> extends BaseMvpActivity<P> implements BaseRefreshView<T> {
+public abstract class BaseRefreshActivity<V extends AbstractRefreshView<T>, P extends BaseRefreshPresenter<V, T>, T> extends BaseMvpActivity<P> implements AbstractRefreshView<T> {
     protected SmartRefreshLayout mRefreshLayout;
 
     @Override

@@ -2,7 +2,7 @@ package com.zyj.plugin.common.mvp.presenter;
 
 import com.zyj.plugin.common.data.DataManager;
 import com.zyj.plugin.common.mvp.contract.BaseRefreshContract;
-import com.zyj.plugin.common.mvp.view.BaseRefreshView;
+import com.zyj.plugin.common.mvp.view.AbstractRefreshView;
 
 /**
  * Description: <BaseRefreshPresenter><br>
@@ -11,7 +11,7 @@ import com.zyj.plugin.common.mvp.view.BaseRefreshView;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public abstract class BaseRefreshPresenter<V extends BaseRefreshView<T>, T> extends BasePresenter<V> implements BaseRefreshContract.Presenter {
+public abstract class BaseRefreshPresenter<V extends AbstractRefreshView<T>, T> extends BasePresenter<V> implements BaseRefreshContract.Presenter {
     protected DataManager dataManager;
 
     public BaseRefreshPresenter(DataManager dataManager) {

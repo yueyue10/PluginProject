@@ -1,6 +1,6 @@
 package com.zyj.plugin.common.mvp.contract;
 
-import com.zyj.plugin.common.mvp.view.BaseView;
+import com.zyj.plugin.common.mvp.view.AbstractView;
 
 /**
  * Description: <基本的刷新数据协议><br>
@@ -22,7 +22,7 @@ public interface BaseRefreshContract {
         void loadMoreData();
     }
 
-    interface View extends BaseView {
+    interface View extends AbstractView {
         /**
          * 是否启用下拉刷新
          *

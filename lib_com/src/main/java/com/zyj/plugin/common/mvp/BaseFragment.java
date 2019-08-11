@@ -19,7 +19,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zyj.plugin.common.R;
 import com.zyj.plugin.common.event.common.BaseFragmentEvent;
-import com.zyj.plugin.common.mvp.view.BaseView;
+import com.zyj.plugin.common.mvp.view.AbstractView;
 import com.zyj.plugin.common.uitl.NetUtil;
 import com.zyj.plugin.common.uitl.log.KLog;
 import com.zyj.plugin.common.view.LoadingInitView;
@@ -39,7 +39,7 @@ import butterknife.ButterKnife;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public abstract class BaseFragment extends Fragment implements BaseView {
+public abstract class BaseFragment extends Fragment implements AbstractView {
     protected static final String TAG = BaseFragment.class.getSimpleName();
     protected AppCompatActivity mActivity;
     protected View mView;
@@ -211,11 +211,11 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         return R.layout.common_toolbar;
     }
 
-    public void showLoadView() {
+    public void showLoading() {
         showInitLoadView(true);
     }
 
-    public void hideLoadView() {
+    public void hideLoading() {
         showInitLoadView(false);
     }
 

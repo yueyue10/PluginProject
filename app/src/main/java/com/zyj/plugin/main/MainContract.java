@@ -1,10 +1,10 @@
 package com.zyj.plugin.main;
 
 import com.zyj.plugin.common.mvp.presenter.AbstractPresenter;
-import com.zyj.plugin.common.mvp.view.BaseView;
+import com.zyj.plugin.common.mvp.view.AbstractView;
 
 public interface MainContract {
-    interface View extends BaseView {
+    interface View extends AbstractView {
 
     }
 

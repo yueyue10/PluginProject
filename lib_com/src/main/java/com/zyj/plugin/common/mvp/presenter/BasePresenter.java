@@ -7,7 +7,7 @@ import com.zyj.plugin.common.data.bean.BaseResponse;
 import com.zyj.plugin.common.data.bean.BaseResponseV2;
 import com.zyj.plugin.common.data.observer.BaseObserver;
 import com.zyj.plugin.common.data.utils.RxUtils;
-import com.zyj.plugin.common.mvp.view.BaseView;
+import com.zyj.plugin.common.mvp.view.AbstractView;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
@@ -21,7 +21,7 @@ import io.reactivex.disposables.Disposable;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public abstract class BasePresenter<V extends BaseView> implements AbstractPresenter<V> {
+public abstract class BasePresenter<V extends AbstractView> implements AbstractPresenter<V> {
 
     protected V mView;
     protected Activity activity;
