@@ -1,7 +1,9 @@
 package com.zyj.plugin.common.mvp;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,12 +16,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.githang.statusbar.StatusBarCompat;
 import com.zyj.plugin.common.R;
 import com.zyj.plugin.common.event.common.BaseActivityEvent;
 import com.zyj.plugin.common.manager.ActivityManager;
 import com.zyj.plugin.common.mvp.view.AbstractView;
 import com.zyj.plugin.common.uitl.NetUtil;
+import com.zyj.plugin.common.uitl.StatusBarUtil;
 import com.zyj.plugin.common.view.LoadingInitView;
 import com.zyj.plugin.common.view.NetErrorView;
 import com.zyj.plugin.common.view.NoDataView;
@@ -58,6 +63,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Abstract
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_root);
+        initStatusBar();
         mActivity = this;
         initCommonView();
         ButterKnife.bind(this);
@@ -68,6 +74,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Abstract
         initData();
         EventBus.getDefault().register(this);
         ActivityManager.getInstance().addActivity(this);
+    }
+
+    public void initStatusBar() {
+        StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.withe));
     }
 
     protected void initCommonView() {
@@ -257,6 +267,13 @@ public abstract class BaseActivity extends AppCompatActivity implements Abstract
         imageView.setVisibility(View.VISIBLE);
     }
 
+    public void setBack(int resId) {
+        ImageView imageView = findViewById(R.id.iv_left);
+        imageView.setImageResource(resId);
+        imageView.setVisibility(View.VISIBLE);
+        imageView.setOnClickListener(v -> finish());
+    }
+
     public RecyclerView initRecyclerView(int resId, RecyclerView.Adapter adapter, RecyclerView.LayoutManager layoutManager) {
         RecyclerView recyclerView = findViewById(resId);
         recyclerView.setAdapter(adapter);
@@ -264,5 +281,11 @@ public abstract class BaseActivity extends AppCompatActivity implements Abstract
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setOverScrollMode(OVER_SCROLL_NEVER);
         return recyclerView;
+    }
+
+    public void setRight(int resId) {
+        ImageView imageView = findViewById(R.id.iv_right);
+        imageView.setImageResource(resId);
+        imageView.setVisibility(View.VISIBLE);
     }
 }

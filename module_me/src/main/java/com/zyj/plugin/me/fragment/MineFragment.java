@@ -9,8 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.PermissionUtils;
-import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.zyj.plugin.common.Constants;
@@ -21,6 +19,7 @@ import com.zyj.plugin.common.data.local.SpManager;
 import com.zyj.plugin.common.mvp.BaseMvpFragment;
 import com.zyj.plugin.common.view.CircleImageView;
 import com.zyj.plugin.login.utils.LoginUtils;
+import com.zyj.plugin.login.web.ShareFragment;
 import com.zyj.plugin.me.R;
 import com.zyj.plugin.me.R2;
 import com.zyj.plugin.me.order.OrderListActivity;
@@ -38,7 +37,7 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
     CircleImageView user_icon_iv;
     List<ResourceBean> resourceBeans;
     MineModuleAdapter mineModuleAdapter;
-    //    public ShareFragment shareFragment;
+    public ShareFragment shareFragment;
     private String download_url;
     String[] phonePermission = new String[]{Manifest.permission.CALL_PHONE};
 
@@ -80,11 +79,11 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
 //                    }
                     break;
                 case "推荐给好友":
-//                    if (shareFragment == null) {
-//                        shareFragment = ShareFragment.getInstance(getString(R.string.app_name),
-//                                getString(R.string.share_content), download_url, null);
-//                    }
-//                    shareFragment.show(mActivity.getSupportFragmentManager(), "ShareFragment");
+                    if (shareFragment == null) {
+                        shareFragment = ShareFragment.getInstance(getString(R.string.app_name),
+                                getString(R.string.share_content), download_url, null);
+                    }
+                    shareFragment.show(mActivity.getSupportFragmentManager(), "ShareFragment");
                     break;
                 case "常用信息":
 //                    if (LoginUtils.isLogin(mActivity, Constants.REQUEST_CODE_LOGIN)) {
@@ -103,23 +102,6 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
                     break;
             }
         });
-    }
-
-    /**
-     * 获取权限
-     */
-    private void requestPermission() {
-        PermissionUtils.permission(phonePermission).callback(new PermissionUtils.FullCallback() {
-            @Override
-            public void onGranted(List<String> permissionsGranted) {
-                //SpanUtils.with()
-            }
-
-            @Override
-            public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
-                showToast("拨号权限被禁止");
-            }
-        }).theme(activity -> ScreenUtils.setFullScreen(activity)).request();
     }
 
     @OnClick({R2.id.user_icon_iv, R2.id.user_name_tv})

@@ -5,8 +5,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.blankj.utilcode.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.zyj.plugin.common.data.bean.HomeAdBean;
 import com.zyj.plugin.common.data.bean.HomeBean;
 import com.zyj.plugin.common.data.bean.NewsBean;
 import com.zyj.plugin.common.data.bean.ResourceBean;
@@ -14,11 +16,13 @@ import com.zyj.plugin.common.mvp.BaseMvpFragment;
 import com.zyj.plugin.common.view.DotsLayout;
 import com.zyj.plugin.home.R;
 import com.zyj.plugin.home.R2;
+import com.zyj.plugin.home.utils.JudgeUtils;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -64,6 +68,19 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         mPresenter.getHomeData(6);
     }
 
+    @OnClick({R2.id.more_news_iv, R2.id.picked_news_iv})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.more_news_iv:
+                if (homeBean != null)
+                    JudgeUtils.startPickedListActivity(mActivity, homeBean.getStrategyList());
+                break;
+            case R.id.picked_news_iv:
+                JudgeUtils.startNewsDetailAc(mActivity, newsBean.getId());
+                break;
+        }
+    }
+
     @Override
     public void initListener() {
         viewPager.setOnPageChangeListener(new PageChangeListener() {
@@ -78,7 +95,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
             } else if (resourceBeans.get(position).getName().equals(mActivity.getString(R.string.introduce))) {
 //                startActivity(new Intent(mActivity, VenueListActivity.class));
             } else if (resourceBeans.get(position).getName().equals(mActivity.getString(R.string.informations))) {
-//                JudgeUtils.startNewsListAc(mActivity, "");
+                JudgeUtils.startNewsListAc(mActivity, "");
             } else if (resourceBeans.get(position).getName().equals(mActivity.getString(R.string.suggested_feedback))) {
 //                startActivity(new Intent(mActivity, FeedbackActivity.class));
             }
@@ -86,17 +103,15 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     }
 
     @Override
-    public void getHomeDataSuccess(HomeBean homeAdBean) {
-        this.homeBean = homeAdBean;
+    public void getHomeDataSuccess(HomeBean homeBean) {
+        this.homeBean = homeBean;
         vpSize = homeBean.getAdvertisementList().size();
         homePagerAdapter = new HomePagerAdapter(mActivity, homeBean.getAdvertisementList());
-//        homePagerAdapter.setOnClickListener(homeAdBean -> {
-//            if (StringUtils.isEmpty(homeAdBean.getAdUrl()))
-//                return;
-////            JudgeUtils.startWebViewAc(_mActivity, null,
-////                    null, null, null, true);
-//            JudgeUtils.startWebViewAc(_mActivity, homeAdBean.getAdUrl(), null);
-//        });
+        homePagerAdapter.setOnClickListener(homeAdBean1 -> {
+            if (StringUtils.isEmpty(homeAdBean1.getAdUrl()))
+                return;
+            JudgeUtils.startWebViewAc(mActivity, homeAdBean1.getAdUrl(), null);
+        });
         dotLayout.setDot(0, vpSize);
         viewPager.setAdapter(homePagerAdapter);
         startLoop();

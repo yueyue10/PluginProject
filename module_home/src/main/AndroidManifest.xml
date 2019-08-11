@@ -9,6 +9,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".main.MainActivity" />
+        <activity android:name=".news.NewsListActivity" />
+        <activity android:name=".news.PickedListActivity" />
+        <activity android:name=".news.detail.NewsDetailActivity" />
+        <activity android:name=".news.picture.ShowPictureAc" />
+
     </application>
 
 </manifest>

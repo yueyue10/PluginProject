@@ -1,12 +1,26 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme1" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="toolbarStyle">@style/NoSpaceActionBarTheme</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="pwkInputStyle">@style/PWKInputViewStyle</item>
+        <item name="android:dropDownListViewStyle">@style/DeviderSpinnerStyle</item>
+    </style>
+
+    <style name="FullTheme" parent="AppTheme">
+        <item name="android:windowNoTitle">true</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
     </style>
 
     <style name="NoSpaceActionBarTheme" parent="Base.Widget.AppCompat.Toolbar">
@@ -25,8 +39,24 @@
         <item name="navigationIcon">@drawable/callback_white_icon</item>
         <item name="toolbarStyle">@style/NoSpaceActionBarTheme</item>
     </style>
+
     <style name="AppTheme.BackBar" parent="AppTheme">
         <item name="navigationIcon">@drawable/navbar_icon_return</item>
         <item name="toolbarStyle">@style/NoSpaceActionBarTheme</item>
+    </style>
+
+    <style name="DeviderSpinnerStyle" parent="android:Widget.ListView.DropDown">
+        <item name="android:divider">@color/tv_login_change</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <style name="DialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="colorPrimary">@color/colorPrimary</item> <!--浅蓝色-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item> <!--深蓝色-->
     </style>
 </resources>

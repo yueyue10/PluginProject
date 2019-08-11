@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="@color/withe"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/module_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_26"
+        android:layout_marginTop="@dimen/dp_28"
+        android:layout_marginRight="@dimen/dp_26"
+        tools:itemCount="4"
+        tools:layoutManager="GridLayoutManager"
+        tools:listitem="@layout/item_image_view"
+        tools:spanCount="4" />
+
+    <TextView
+        android:id="@+id/cancel_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_22"
+        android:layout_marginRight="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_16"
+        android:gravity="center"
+        android:text="@string/cancel_share"
+        android:textColor="#838383"
+        android:textSize="@dimen/sp_17" />
+</LinearLayout>

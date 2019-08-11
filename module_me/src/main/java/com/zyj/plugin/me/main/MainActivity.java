@@ -10,6 +10,11 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
     }
 
     @Override
+    public void initStatusBar() {
+
+    }
+
+    @Override
     public void initView() {
 
     }

@@ -59,4 +59,6 @@ dependencies {
 
     api rootProject.ext.dependencies["arouter-api"]
     api rootProject.ext.dependencies["butterknife"]
+    api rootProject.ext.dependencies["picture_library"]
+    api rootProject.ext.dependencies["status-bar"]
 }

@@ -75,6 +75,8 @@ ext {
             "BaseRecyclerViewAdapter" : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34",
             //微信
             "wechat-sdk"              : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.4.0",
+            "picture_library"         : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.3",
+            "status-bar"              : "com.githang:status-bar-compat:0.7",
     ]
 }
 
