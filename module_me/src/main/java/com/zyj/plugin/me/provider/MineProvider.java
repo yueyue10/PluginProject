@@ -1,11 +1,11 @@
-package com.zyj.plugin.home.provider;
+package com.zyj.plugin.me.provider;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.zyj.plugin.common.provider.IHomeProvider;
-import com.zyj.plugin.home.fragment.HomeFragment;
+import com.zyj.plugin.common.provider.IMeProvider;
+import com.zyj.plugin.me.fragment.MineFragment;
 
 /**
  * Description: <NewProvider><br>
@@ -14,8 +14,8 @@ import com.zyj.plugin.home.fragment.HomeFragment;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-@Route(path = "/home/main", name = "首页")
-public class HomeProvider implements IHomeProvider {
+@Route(path = "/mine/main", name = "我的")
+public class MineProvider implements IMeProvider {
 
     @Override
     public void init(Context context) {
@@ -23,7 +23,7 @@ public class HomeProvider implements IHomeProvider {
     }
 
     @Override
-    public Fragment getHomeFragment() {
-        return HomeFragment.newInstance();
+    public Fragment getMineFragment() {
+        return MineFragment.newInstance();
     }
 }

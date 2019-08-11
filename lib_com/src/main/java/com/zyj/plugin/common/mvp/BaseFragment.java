@@ -30,6 +30,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import butterknife.ButterKnife;
+
 /**
  * Description: <BaseFragment><br>
  * Author:      gxl<br>
@@ -69,6 +71,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_root, container, false);
         initCommonView(mView);
+        ButterKnife.bind(this, mView);
         initView(mView);
         initListener();
         return mView;

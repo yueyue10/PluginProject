@@ -16,10 +16,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends BaseMvpActivity<MainPresenter> implements MainContract.View {
 
-    @Autowired(name = "/main/home")
+    @Autowired(name = "/home/main")
     IHomeProvider mHomeProvider;
 
-    @Autowired(name = "/main/mine")
+    @Autowired(name = "/mine/main")
     IMeProvider mMeProvider;
 
     JPTabBar tabBar;

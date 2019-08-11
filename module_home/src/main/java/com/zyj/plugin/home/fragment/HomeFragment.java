@@ -13,16 +13,19 @@ import com.zyj.plugin.common.data.bean.ResourceBean;
 import com.zyj.plugin.common.mvp.BaseMvpFragment;
 import com.zyj.plugin.common.view.DotsLayout;
 import com.zyj.plugin.home.R;
+import com.zyj.plugin.home.R2;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import butterknife.BindView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class HomeFragment extends BaseMvpFragment<HomePresenter> implements HomeContract.View {
 
+    @BindView(R2.id.viewPager)
     ViewPager viewPager;
     DotsLayout dotLayout;
     ImageView picked_news_iv;
@@ -46,7 +49,6 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     @Override
     public void initView(View view) {
         initRecyclerView();
-        viewPager = view.findViewById(R.id.viewPager);
         dotLayout = view.findViewById(R.id.dotLayout);
         picked_news_iv = view.findViewById(R.id.picked_news_iv);
     }

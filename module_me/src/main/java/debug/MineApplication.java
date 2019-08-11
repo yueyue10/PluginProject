@@ -1,6 +1,7 @@
 package debug;
 
 import com.zyj.plugin.common.BaseApplication;
+import com.zyj.plugin.me.inject.DaggerMineComponent;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
