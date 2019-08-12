@@ -13,5 +13,5 @@ Android组件化探索
 - 5.在module_home、module_me里面编写界面等，包名是项目applicationId+对应的模块名，但是不配置Application和applicationId。
     只有在isModule为true的时候才会配置Application和applicationId。
 - 6.测试dagger的发现：包含注解的fragment必须放在注解的activity里面才可以
-
-
+- 7.组件化mvp框架构建完成。新加入自定义标题栏，以及在基类里面写好对标题栏的配置。对下拉刷新布局配置。
+- 8.网络请求配置优化

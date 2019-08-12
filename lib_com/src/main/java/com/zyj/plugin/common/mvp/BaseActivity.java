@@ -251,15 +251,12 @@ public abstract class BaseActivity extends AppCompatActivity implements Abstract
         if (mNetErrorView == null) {
             View view = mViewStubError.inflate();
             mNetErrorView = view.findViewById(R.id.view_net_error);
-            mNetErrorView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!NetUtil.checkNetToast()) {
-                        return;
-                    }
-                    hideNetWorkErrView();
-                    initData();
+            mNetErrorView.setRefreshBtnClickListener(v -> {
+                if (!NetUtil.checkNetToast()) {
+                    return;
                 }
+                hideNetWorkErrView();
+                initData();
             });
         }
         mNetErrorView.setVisibility(show ? View.VISIBLE : View.GONE);
