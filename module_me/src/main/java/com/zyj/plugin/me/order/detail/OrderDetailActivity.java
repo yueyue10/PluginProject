@@ -138,51 +138,48 @@ public class OrderDetailActivity extends BaseMvpActivity<OrderDetailPresenter> i
 
     public class FooterView {
 
-        @BindView(R.id.pay_layout)
+        @BindView(R2.id.pay_layout)
         RelativeLayout pay_layout;
-        @BindView(R.id.pay_tv)
+        @BindView(R2.id.pay_tv)
         TextView pay_tv;
-        @BindView(R.id.cancel_order_tv)
+        @BindView(R2.id.cancel_order_tv)
         TextView cancel_order_tv;
-        @BindView(R.id.order_price_tv1)
+        @BindView(R2.id.order_price_tv1)
         TextView orderPriceTv1;
-        @BindView(R.id.discount_price_tv1)
+        @BindView(R2.id.discount_price_tv1)
         TextView discountPriceTv1;
-        @BindView(R.id.discount_price_tv)
+        @BindView(R2.id.discount_price_tv)
         TextView discount_price_tv;
-        @BindView(R.id.real_pay_price_tv1)
+        @BindView(R2.id.real_pay_price_tv1)
         TextView realPayPriceTv1;
-        @BindView(R.id.divider_line3)
+        @BindView(R2.id.divider_line3)
         View divider_line3;
 
-        @OnClick({R.id.cancel_order_tv, R.id.pay_tv})
+        @OnClick({R2.id.cancel_order_tv, R2.id.pay_tv})
         public void onViewClicked(View view) {
-            switch (view.getId()) {
-                case R.id.cancel_order_tv:
-                    DialogUtil.showDialog(mActivity,
-                            "提示",
-                            "确定要取消订单吗？",
-                            "确定",
-                            "取消",
-                            (dialog, which) -> mPresenter.cancelOrder(orderCode),
-                            (dialog, which) -> dialog.dismiss());
-                    break;
-                case R.id.pay_tv:
-                    if (mOrderDetailBean == null)
-                        return;
-                    if (mOrderDetailBean.getTotal() < 0)
-                        return;
-                    if (mOrderDetailBean.getTotal() == 0) {
-                        mPresenter.confirmPirceZeroOrder(mOrderDetailBean);
-                    } else {
+            int i = view.getId();
+            if (i == R.id.cancel_order_tv) {
+                DialogUtil.showDialog(mActivity,
+                        "提示",
+                        "确定要取消订单吗？",
+                        "确定",
+                        "取消",
+                        (dialog, which) -> mPresenter.cancelOrder(orderCode),
+                        (dialog, which) -> dialog.dismiss());
+            } else if (i == R.id.pay_tv) {
+                if (mOrderDetailBean == null)
+                    return;
+                if (mOrderDetailBean.getTotal() < 0)
+                    return;
+                if (mOrderDetailBean.getTotal() == 0) {
+                    mPresenter.confirmPirceZeroOrder(mOrderDetailBean);
+                } else {
 //                        if (payDialogFragment == null) {
 //                            payDialogFragment = PayDialogFragment.getInstance(mOrderDetailBean.getTotal());
 //                        }
 //                        payDialogFragment.setGoToPayListener(payType -> mPresenter.getPayProcess(mOrderDetailBean, payType));
 //                        payDialogFragment.show(getSupportFragmentManager(), "ShareFragment");
-                    }
-
-                    break;
+                }
             }
         }
 

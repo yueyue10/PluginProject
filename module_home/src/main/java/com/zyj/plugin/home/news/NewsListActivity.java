@@ -11,6 +11,7 @@ import com.zyj.plugin.common.data.bean.NewsBean;
 import com.zyj.plugin.common.mvp.BaseMvpActivity;
 import com.zyj.plugin.common.uitl.recyclerv.HorizontalDividerItemDecoration;
 import com.zyj.plugin.home.R;
+import com.zyj.plugin.home.R2;
 import com.zyj.plugin.home.utils.JudgeUtils;
 import com.zyj.plugin.login.utils.LoginUtils;
 
@@ -45,15 +46,13 @@ public class NewsListActivity extends BaseMvpActivity<NewsListPresenter> impleme
     @Override
     public void initListener() {
         newsListAdapter.setOnItemChildClickListener((adapter, view, position) -> {
-            switch (view.getId()) {
-                case R.id.likes_layout:
-                    LinearLayout likes_layout = view.findViewById(R.id.likes_layout);
-                    Animation anim = AnimationUtils.loadAnimation(this, R.anim.like_news_list);
-                    likes_layout.startAnimation(anim);
-                    if (!LoginUtils.isLogin(mActivity, Constants.REQUEST_CODE_LOGIN) || newsBeans.get(position).getStates() != 2)
-                        return;
-                    mPresenter.strategyInfoVote(newsBeans.get(position).getId(), position);
-                    break;
+            if (view.getId() == R.id.likes_layout) {
+                LinearLayout likes_layout = view.findViewById(R.id.likes_layout);
+                Animation anim = AnimationUtils.loadAnimation(this, R.anim.like_news_list);
+                likes_layout.startAnimation(anim);
+                if (!LoginUtils.isLogin(mActivity, Constants.REQUEST_CODE_LOGIN) || newsBeans.get(position).getStates() != 2)
+                    return;
+                mPresenter.strategyInfoVote(newsBeans.get(position).getId(), position);
             }
         });
         newsListAdapter.setOnItemClickListener((adapter, view, position) -> {

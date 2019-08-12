@@ -8,6 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zyj.plugin.common.data.bean.KeyValueBean;
 import com.zyj.plugin.me.R;
+import com.zyj.plugin.me.R2;
 
 import java.util.List;
 
@@ -36,13 +37,13 @@ public class OrderDetailAdapter extends BaseQuickAdapter<KeyValueBean, OrderDeta
 
     class ViewHolder extends BaseViewHolder {
 
-        @BindView(R.id.key_tv)
+        @BindView(R2.id.key_tv)
         TextView keyTv;
-        @BindView(R.id.value_tv)
+        @BindView(R2.id.value_tv)
         TextView valueTv;
-        @BindView(R.id.divider_line1)
+        @BindView(R2.id.divider_line1)
         View dividerLine1;
-        @BindView(R.id.divider_line2)
+        @BindView(R2.id.divider_line2)
         View dividerLine2;
 
         public ViewHolder(View view) {

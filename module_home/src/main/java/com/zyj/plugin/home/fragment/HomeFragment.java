@@ -70,14 +70,12 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @OnClick({R2.id.more_news_iv, R2.id.picked_news_iv})
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.more_news_iv:
-                if (homeBean != null)
-                    JudgeUtils.startPickedListActivity(mActivity, homeBean.getStrategyList());
-                break;
-            case R.id.picked_news_iv:
-                JudgeUtils.startNewsDetailAc(mActivity, newsBean.getId());
-                break;
+        int i = view.getId();
+        if (i == R.id.more_news_iv) {
+            if (homeBean != null)
+                JudgeUtils.startPickedListActivity(mActivity, homeBean.getStrategyList());
+        } else if (i == R.id.picked_news_iv) {
+            JudgeUtils.startNewsDetailAc(mActivity, newsBean.getId());
         }
     }
 

@@ -2,6 +2,8 @@ package com.zyj.plugin.common;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.LogUtils;
@@ -41,4 +43,9 @@ public abstract class BaseApplication extends DaggerApplication {
         return mApplication;
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 }

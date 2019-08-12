@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.zyj.plugin.common.provider.ARouterConfig;
 import com.zyj.plugin.common.provider.IHomeProvider;
 import com.zyj.plugin.home.fragment.HomeFragment;
 
@@ -14,7 +15,7 @@ import com.zyj.plugin.home.fragment.HomeFragment;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-@Route(path = "/home/main", name = "首页")
+@Route(path = ARouterConfig.HomeFragment, name = "首页")
 public class HomeProvider implements IHomeProvider {
 
     @Override

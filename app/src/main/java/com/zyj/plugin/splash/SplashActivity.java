@@ -19,6 +19,11 @@ public class SplashActivity extends BaseActivity {
     }
 
     @Override
+    public boolean enableToolbar() {
+        return false;
+    }
+
+    @Override
     public void initView() {
 
     }

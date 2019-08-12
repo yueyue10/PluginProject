@@ -12,6 +12,7 @@ import com.zyj.plugin.common.data.bean.OrderBean;
 import com.zyj.plugin.common.uitl.ConverterUtils;
 import com.zyj.plugin.common.uitl.ShapeUtils;
 import com.zyj.plugin.me.R;
+import com.zyj.plugin.me.R2;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -59,21 +60,21 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderBean, OrderListAdapt
 
     class AtlasViewHolder extends BaseViewHolder {
 
-        @BindView(R.id.order_time_tv)
+        @BindView(R2.id.order_time_tv)
         TextView orderTimeTv;
-        @BindView(R.id.order_status_tv)
+        @BindView(R2.id.order_status_tv)
         TextView orderStatusTv;
-        @BindView(R.id.order_car_iv)
+        @BindView(R2.id.order_car_iv)
         ImageView orderCarIv;
-        @BindView(R.id.park_location_tv)
+        @BindView(R2.id.park_location_tv)
         TextView parkLocationTv;
-        @BindView(R.id.park_time_tv)
+        @BindView(R2.id.park_time_tv)
         TextView parkTimeTv;
-        @BindView(R.id.order_price_tv)
+        @BindView(R2.id.order_price_tv)
         TextView orderPriceTv;
-        @BindView(R.id.cancel_order_tv)
+        @BindView(R2.id.cancel_order_tv)
         TextView cancelOrderTv;
-        @BindView(R.id.pay_now_tv)
+        @BindView(R2.id.pay_now_tv)
         TextView payNowTv;
 
         public AtlasViewHolder(View view) {

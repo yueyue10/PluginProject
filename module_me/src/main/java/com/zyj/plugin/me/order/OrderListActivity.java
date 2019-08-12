@@ -70,22 +70,21 @@ public class OrderListActivity extends BaseRefreshActivity<OrderListPresenter> i
         orderListAdapter.setOnItemClickListener((adapter, view, position) ->
                 JudgeUtils.startOrderDetailAc(mActivity, orderBeans.get(position).getOrderCode()));
         orderListAdapter.setOnItemChildClickListener((adapter, view, position) -> {
-            switch (view.getId()) {
-                case R.id.cancel_order_tv://取消订单
-                    DialogUtil.showDialog(mActivity,
-                            "提示",
-                            "确定要取消订单吗？"
-                            , "确定"
-                            , "取消",
-                            (dialog, which) -> mPresenter.cancelOrder(orderBeans.get(position).getOrderCode()),
-                            (dialog, which) -> dialog.dismiss());
-                    break;
-                case R.id.pay_now_tv:
-                    if (orderBeans.get(position).getTotalPrice() < 0)
-                        return;
-                    if (orderBeans.get(position).getTotalPrice() == 0) {
-                        mPresenter.confirmPirceZeroOrder(orderBeans.get(position));
-                    } else {
+            int i = view.getId();//取消订单
+            if (i == R.id.cancel_order_tv) {
+                DialogUtil.showDialog(mActivity,
+                        "提示",
+                        "确定要取消订单吗？"
+                        , "确定"
+                        , "取消",
+                        (dialog, which) -> mPresenter.cancelOrder(orderBeans.get(position).getOrderCode()),
+                        (dialog, which) -> dialog.dismiss());
+            } else if (i == R.id.pay_now_tv) {
+                if (orderBeans.get(position).getTotalPrice() < 0)
+                    return;
+                if (orderBeans.get(position).getTotalPrice() == 0) {
+                    mPresenter.confirmPirceZeroOrder(orderBeans.get(position));
+                } else {
 //                        if (payDialogFragment == null) {
 //                            payDialogFragment = PayDialogFragment.getInstance(orderBeans.get(position).getTotalPrice());
 //                        }
@@ -93,9 +92,7 @@ public class OrderListActivity extends BaseRefreshActivity<OrderListPresenter> i
 //                            mPresenter.getPayProcess(orderBeans.get(position), payType);
 //                        });
 //                        payDialogFragment.show(getSupportFragmentManager(), "ShareFragment");
-                    }
-
-                    break;
+                }
             }
         });
     }

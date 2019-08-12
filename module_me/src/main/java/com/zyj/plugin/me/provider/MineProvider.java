@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.zyj.plugin.common.provider.ARouterConfig;
 import com.zyj.plugin.common.provider.IMeProvider;
 import com.zyj.plugin.me.fragment.MineFragment;
 
@@ -14,7 +15,7 @@ import com.zyj.plugin.me.fragment.MineFragment;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-@Route(path = "/mine/main", name = "我的")
+@Route(path = ARouterConfig.MineFragment, name = "我的")
 public class MineProvider implements IMeProvider {
 
     @Override

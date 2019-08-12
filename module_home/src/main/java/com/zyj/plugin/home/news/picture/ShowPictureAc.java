@@ -9,6 +9,7 @@ import com.zyj.plugin.common.mvp.BaseActivity;
 import com.zyj.plugin.common.uitl.ShapeUtils;
 import com.zyj.plugin.common.uitl.StatusBarUtil;
 import com.zyj.plugin.home.R;
+import com.zyj.plugin.home.R2;
 import com.zyj.plugin.home.fragment.PageChangeListener;
 
 import java.util.ArrayList;
@@ -17,11 +18,11 @@ import butterknife.BindView;
 
 public class ShowPictureAc extends BaseActivity {
 
-    @BindView(R.id.ll_title_content)
+    @BindView(R2.id.ll_title_content)
     RelativeLayout ll_title_content;
-    @BindView(R.id.picture_vp)
+    @BindView(R2.id.picture_vp)
     ViewPager picture_vp;
-    @BindView(R.id.tv_number)
+    @BindView(R2.id.tv_number)
     TextView tv_number;
     int mPosition = 0;
     SamplePagerAdapter pagerAdapter;

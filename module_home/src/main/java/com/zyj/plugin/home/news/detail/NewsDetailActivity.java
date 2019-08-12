@@ -10,6 +10,7 @@ import com.zyj.plugin.common.data.bean.CommonContent;
 import com.zyj.plugin.common.data.bean.NewsDetailBean;
 import com.zyj.plugin.common.mvp.BaseMvpActivity;
 import com.zyj.plugin.home.R;
+import com.zyj.plugin.home.R2;
 import com.zyj.plugin.home.utils.JudgeUtils;
 import com.zyj.plugin.login.web.ShareFragment;
 
@@ -55,17 +56,15 @@ public class NewsDetailActivity extends BaseMvpActivity<NewsDetailPresenter> imp
         return view;
     }
 
-    @OnClick(R.id.iv_right)
+    @OnClick(R2.id.iv_right)
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.iv_right:
-                if (shareFragment == null) {
-                    shareFragment = ShareFragment.getInstance(newsDetailBean.getTitle(), newsDetailBean.getDescription(),
-                            String.format(share_url, 1, newsDetailBean.getId()),
-                            newsDetailBean.getCoverUrl());
-                }
-                shareFragment.show(getSupportFragmentManager(), "ShareFragment");
-                break;
+        if (view.getId() == R.id.iv_right) {
+            if (shareFragment == null) {
+                shareFragment = ShareFragment.getInstance(newsDetailBean.getTitle(), newsDetailBean.getDescription(),
+                        String.format(share_url, 1, newsDetailBean.getId()),
+                        newsDetailBean.getCoverUrl());
+            }
+            shareFragment.show(getSupportFragmentManager(), "ShareFragment");
         }
     }
 
@@ -94,9 +93,9 @@ public class NewsDetailActivity extends BaseMvpActivity<NewsDetailPresenter> imp
     }
 
     class HeaderView {
-        @BindView(R.id.title_tv)
+        @BindView(R2.id.title_tv)
         TextView title_tv;
-        @BindView(R.id.time_tv)
+        @BindView(R2.id.time_tv)
         TextView time_tv;
 
         public HeaderView(View view) {

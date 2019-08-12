@@ -22,6 +22,7 @@ import com.scwang.smartrefresh.layout.util.DensityUtil;
 import com.zyj.plugin.common.data.bean.CommonContent;
 import com.zyj.plugin.common.view.JustifyTextView;
 import com.zyj.plugin.home.R;
+import com.zyj.plugin.home.R2;
 
 import java.util.List;
 
@@ -97,13 +98,13 @@ public class NewsDetailAdapter extends BaseQuickAdapter<CommonContent, NewsDetai
 
     static class ViewHolder extends BaseViewHolder {
 
-        @BindView(R.id.space_view)
+        @BindView(R2.id.space_view)
         Space space_view;
-        @BindView(R.id.news_title_tv)
+        @BindView(R2.id.news_title_tv)
         TextView news_title_tv;
-        @BindView(R.id.news_content_tv)
+        @BindView(R2.id.news_content_tv)
         JustifyTextView news_content_tv;
-        @BindView(R.id.news_iv)
+        @BindView(R2.id.news_iv)
         ImageView news_iv;
 
         public ViewHolder(View view) {

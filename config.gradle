@@ -77,6 +77,7 @@ ext {
             "wechat-sdk"              : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.4.0",
             "picture_library"         : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.3",
             "status-bar"              : "com.githang:status-bar-compat:0.7",
+            "multidex"                : "com.android.support:multidex:1.0.3",
     ]
 }
 

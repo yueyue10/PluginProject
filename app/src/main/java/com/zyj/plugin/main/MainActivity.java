@@ -9,6 +9,7 @@ import com.jpeng.jptabbar.JPTabBar;
 import com.jpeng.jptabbar.OnTabSelectListener;
 import com.zyj.plugin.R;
 import com.zyj.plugin.common.mvp.BaseMvpActivity;
+import com.zyj.plugin.common.provider.ARouterConfig;
 import com.zyj.plugin.common.provider.IHomeProvider;
 import com.zyj.plugin.common.provider.IMeProvider;
 
@@ -16,10 +17,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends BaseMvpActivity<MainPresenter> implements MainContract.View {
 
-    @Autowired(name = "/home/main")
+    @Autowired(name = ARouterConfig.HomeFragment)
     IHomeProvider mHomeProvider;
 
-    @Autowired(name = "/mine/main")
+    @Autowired(name = ARouterConfig.MineFragment)
     IMeProvider mMeProvider;
 
     JPTabBar tabBar;
@@ -35,8 +36,8 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
     }
 
     @Override
-    public boolean enableToolbar() {
-        return false;
+    public void initStatusBar() {
+
     }
 
     @Override

@@ -13,6 +13,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zyj.plugin.common.data.bean.NewsBean;
 import com.zyj.plugin.home.R;
+import com.zyj.plugin.home.R2;
 
 import java.util.List;
 
@@ -54,27 +55,27 @@ public class NewsListAdapter extends BaseQuickAdapter<NewsBean, NewsListAdapter.
 
     static class ViewHolder extends BaseViewHolder {
 
-        @BindView(R.id.shapeView)
+        @BindView(R2.id.shapeView)
         View shapeView;
-        @BindView(R.id.spaceView)
+        @BindView(R2.id.spaceView)
         Space spaceView;
-        @BindView(R.id.news_iv)
+        @BindView(R2.id.news_iv)
         ImageView newsIv;
-        @BindView(R.id.news_title_tv)
+        @BindView(R2.id.news_title_tv)
         TextView newsTitleTv;
-        @BindView(R.id.news_time_tv)
+        @BindView(R2.id.news_time_tv)
         TextView newsTimeTv;
-        @BindView(R.id.news_saw_num_iv)
+        @BindView(R2.id.news_saw_num_iv)
         ImageView newsSawNumIv;
-        @BindView(R.id.news_saw_num_tv)
+        @BindView(R2.id.news_saw_num_tv)
         TextView newsSawNumTv;
-        @BindView(R.id.saw_layout)
+        @BindView(R2.id.saw_layout)
         LinearLayout sawLayout;
-        @BindView(R.id.like_iv)
+        @BindView(R2.id.like_iv)
         ImageView likeIv;
-        @BindView(R.id.news_liked_num_tv)
+        @BindView(R2.id.news_liked_num_tv)
         TextView newsLikedNumTv;
-        @BindView(R.id.likes_layout)
+        @BindView(R2.id.likes_layout)
         LinearLayout likesLayout;
 
         public ViewHolder(View view) {

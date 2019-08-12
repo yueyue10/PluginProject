@@ -9,6 +9,7 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -61,4 +62,5 @@ dependencies {
     api rootProject.ext.dependencies["butterknife"]
     api rootProject.ext.dependencies["picture_library"]
     api rootProject.ext.dependencies["status-bar"]
+    api rootProject.ext.dependencies["multidex"]
 }
