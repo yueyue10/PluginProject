@@ -13,6 +13,7 @@
         <activity android:name=".news.PickedListActivity" />
         <activity android:name=".news.detail.NewsDetailActivity" />
         <activity android:name=".news.picture.ShowPictureAc" />
+        <activity android:name=".payol.PayOnLineActivity" />
 
     </application>
 

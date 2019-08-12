@@ -73,6 +73,7 @@ public abstract class BaseFragment extends Fragment implements AbstractView {
         initCommonView(mView);
         ButterKnife.bind(this, mView);
         initView(mView);
+        initRecyclerView();
         initListener();
         return mView;
     }
@@ -282,11 +283,59 @@ public abstract class BaseFragment extends Fragment implements AbstractView {
         }
     }
 
-    public RecyclerView initRecyclerView(int resId, BaseQuickAdapter adapter, RecyclerView.LayoutManager layoutManager) {
+    @Override
+    public void setBack(int resId) {
+
+    }
+
+    @Override
+    public void setRightImage(int resId) {
+
+    }
+
+    @Override
+    public void setRightText(String rightText) {
+
+    }
+
+    @Override
+    public void setRightClick(int resId, View.OnClickListener onClickListener) {
+
+    }
+
+    @Override
+    public void setRightClick(String rightText, View.OnClickListener onClickListener) {
+
+    }
+
+    @Override
+    public void enableTitleStatusBar(boolean title, boolean status) {
+
+    }
+
+    @Override
+    public void initRecyclerView() {
+
+    }
+
+    @Override
+    public RecyclerView initRecyclerView(int resId, RecyclerView.Adapter adapter, RecyclerView.LayoutManager layoutManager) {
         RecyclerView recyclerView = mView.findViewById(resId);
+        return initRecyclerView(recyclerView, adapter, layoutManager);
+    }
+
+    @Override
+    public RecyclerView initRecyclerView(RecyclerView recyclerView, RecyclerView.Adapter adapter, RecyclerView.LayoutManager layoutManager) {
+        return initRecyclerView(recyclerView, adapter, layoutManager, null);
+    }
+
+    @Override
+    public RecyclerView initRecyclerView(RecyclerView recyclerView, RecyclerView.Adapter adapter, RecyclerView.LayoutManager layoutManager, RecyclerView.ItemDecoration divider) {
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
+        if (divider != null)
+            recyclerView.addItemDecoration(divider);
         return recyclerView;
     }
 }

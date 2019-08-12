@@ -15,7 +15,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':lib_com')
     if (inLogin.toBoolean()) {
-        api project(':module_login')
+        api project(':module_com')
     }
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]

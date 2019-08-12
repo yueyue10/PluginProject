@@ -19,8 +19,8 @@ public class SplashActivity extends BaseActivity {
     }
 
     @Override
-    public boolean enableToolbar() {
-        return false;
+    public void enableTitleStatusBar() {
+
     }
 
     @Override

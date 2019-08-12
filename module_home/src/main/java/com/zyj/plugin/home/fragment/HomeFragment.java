@@ -2,6 +2,7 @@ package com.zyj.plugin.home.fragment;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -31,6 +32,8 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @BindView(R2.id.viewPager)
     ViewPager viewPager;
+    @BindView(R2.id.module_rv)
+    RecyclerView module_rv;
     DotsLayout dotLayout;
     ImageView picked_news_iv;
     HomeModuleAdapter homeModuleAdapter;
@@ -52,15 +55,15 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @Override
     public void initView(View view) {
-        initRecyclerView();
         dotLayout = view.findViewById(R.id.dotLayout);
         picked_news_iv = view.findViewById(R.id.picked_news_iv);
     }
 
-    private void initRecyclerView() {
+
+    public void initRecyclerView() {
         resourceBeans = mPresenter.getResourcesData();
         homeModuleAdapter = new HomeModuleAdapter(R.layout.item_home_module, resourceBeans);
-        initRecyclerView(R.id.module_rv, homeModuleAdapter, new GridLayoutManager(mActivity, 4));
+        initRecyclerView(module_rv, homeModuleAdapter, new GridLayoutManager(mActivity, 4));
     }
 
     @Override

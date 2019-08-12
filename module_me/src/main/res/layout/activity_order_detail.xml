@@ -7,15 +7,10 @@
     android:background="#F5F5F5"
     tools:context=".order.detail.OrderDetailActivity">
 
-    <include
-        android:id="@+id/title_layout"
-        layout="@layout/layout_title" />
-
     <View
         android:id="@+id/title_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"
-        android:layout_below="@+id/title_layout"
         android:background="#F4F4F4" />
 
     <android.support.constraint.ConstraintLayout

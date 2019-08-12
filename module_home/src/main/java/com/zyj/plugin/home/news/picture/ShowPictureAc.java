@@ -18,8 +18,6 @@ import butterknife.BindView;
 
 public class ShowPictureAc extends BaseActivity {
 
-    @BindView(R2.id.ll_title_content)
-    RelativeLayout ll_title_content;
     @BindView(R2.id.picture_vp)
     ViewPager picture_vp;
     @BindView(R2.id.tv_number)
@@ -34,11 +32,16 @@ public class ShowPictureAc extends BaseActivity {
     }
 
     @Override
+    public void enableTitleStatusBar() {
+        enableTitleStatusBar(true, false);
+    }
+
+    @Override
     public void initView() {
         setBack(R.mipmap.back);
         ShapeUtils.setShapeCorner2ColorStr(tv_number, "#FF000000", 5);
-        StatusBarUtil.immersiveTitle(ShowPictureAc.this, ContextCompat.getColor(mActivity, R.color.black), ll_title_content);
-        ll_title_content.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.black));
+        StatusBarUtil.immersiveTitle(ShowPictureAc.this, ContextCompat.getColor(mActivity, R.color.black), titleLayout);
+        titleLayout.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.black));
     }
 
     @Override

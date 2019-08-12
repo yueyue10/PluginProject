@@ -3,7 +3,7 @@ package com.zyj.plugin.home.inject;
 import android.app.Application;
 
 import com.zyj.plugin.common.data.module.HttpModule;
-import com.zyj.plugin.login.inject.LoginBindingModule;
+import com.zyj.plugin.login.inject.CommonBindingModule;
 
 import javax.inject.Singleton;
 
@@ -17,7 +17,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         HttpModule.class,
         HomeBindingModule.class,
-        LoginBindingModule.class,
+        CommonBindingModule.class,
         AndroidSupportInjectionModule.class,})
 public interface HomeComponent extends AndroidInjector<DaggerApplication> {
 

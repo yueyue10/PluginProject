@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/booking_space_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="@mipmap/icon_booking_space" />
+
+    <ImageView
+        android:id="@+id/online_payment_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="60dp"
+        android:background="@mipmap/icon_online_payment" />
+
+    <ImageView
+        android:id="@+id/reverse_for_car_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="72dp"
+        android:background="@mipmap/icon_reverse_for_car" />
+
+    <ImageView
+        android:id="@+id/main_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/booking_space_iv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:background="@mipmap/icon_home_close" />
+
+</RelativeLayout>

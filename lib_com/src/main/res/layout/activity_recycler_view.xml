@@ -8,8 +8,6 @@
     android:background="@color/withe"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_title" />
-
     <View
         android:id="@+id/title_line"
         android:layout_width="match_parent"

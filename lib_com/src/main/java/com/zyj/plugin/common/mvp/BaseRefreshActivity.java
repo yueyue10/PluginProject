@@ -1,6 +1,9 @@
 package com.zyj.plugin.common.mvp;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.zyj.plugin.common.R;
 import com.zyj.plugin.common.mvp.contract.BaseRefreshContract;
 import com.zyj.plugin.common.mvp.presenter.BaseRefreshPresenter;
 
@@ -15,17 +18,22 @@ import java.util.ArrayList;
  */
 public abstract class BaseRefreshActivity<P extends BaseRefreshPresenter> extends BaseMvpActivity<P> implements BaseRefreshContract.View {
 
+    protected RecyclerView recyclerView;
     protected SmartRefreshLayout mRefreshLayout;
 
     @Override
     protected void initCommonView() {
         super.initCommonView();
         initRefreshView();
-        configRefreshLayout();
     }
 
-    public void initRefreshView() {
-        mRefreshLayout = findViewById(onBindRefreshLayout());
+    @Override
+    public void initRecyclerView() {
+        recyclerView = findViewById(R.id.recyclerView);
+    }
+
+    private void initRefreshView() {
+        mRefreshLayout = findViewById(R.id.refreshLayout);
         // 下拉刷新
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
             clearRefreshData();
@@ -37,29 +45,17 @@ public abstract class BaseRefreshActivity<P extends BaseRefreshPresenter> extend
         mRefreshLayout.autoRefresh();
     }
 
-    /**
-     * 绑定RefreshLayout
-     */
-    protected abstract int onBindRefreshLayout();
-
-    /**
-     * 配置RefreshLayout
-     */
-    protected abstract void configRefreshLayout();
-
-    /**
-     * 清除RefreshLayout里面需要刷新的数据
-     */
-    protected abstract void clearRefreshData();
-
     @Override
-    public void enableRefresh(boolean b) {
-        mRefreshLayout.setEnableRefresh(b);
+    public void configRefreshLayout() {
+        configRefreshLayout(true, true, true);
     }
 
     @Override
-    public void enableLoadMore(boolean b) {
-        mRefreshLayout.setEnableLoadMore(b);
+    public void configRefreshLayout(boolean enableRefresh, boolean enableLoadMore, boolean autoLoadMore) {
+        mRefreshLayout.setEnableRefresh(enableRefresh);
+        mRefreshLayout.setEnableLoadMore(enableLoadMore);
+        if (autoLoadMore)
+            autoLoadData();
     }
 
     @Override
@@ -73,10 +69,16 @@ public abstract class BaseRefreshActivity<P extends BaseRefreshPresenter> extend
         mRefreshLayout.finishLoadMore();
     }
 
+    /**
+     * 清除RefreshLayout里面需要刷新的数据
+     */
+    protected abstract void clearRefreshData();
+
     @Override
     public void clearData(ArrayList<?>... lists) {
         for (ArrayList<?> list1 : lists) {
             list1.clear();
         }
     }
+
 }

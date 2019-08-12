@@ -9,7 +9,7 @@ import android.app.Activity;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public interface AbstractView extends ILoadView, IHintView, INoDataView, INetErrView {
+public interface AbstractView extends IComView, ILoadView, IHintView, INoDataView, INetErrView {
     void initView();
 
     void initListener();

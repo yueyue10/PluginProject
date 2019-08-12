@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    tools:context=".payol.PayOnLineActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_corner_white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/input_car_number"
+                android:textColor="@color/tv_login_change"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/new_energy_notify"
+                android:textColor="@color/ff999999"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_input_car_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="20dp">
+
+            <com.parkingwang.keyboard.view.InputView
+                android:id="@+id/input_view"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                app:pwkInputTextSize="17sp" />
+
+            <Button
+                android:id="@+id/bt_new_energy"
+                android:layout_width="40dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/bg_stroke"
+                android:gravity="center"
+                android:text="@string/new_energy"
+                android:textColor="@color/bg_button_orange"
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_find_car_line"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/bg_gray" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:text="@string/text_senseless_payment"
+            android:textColor="@color/tv_login_change"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <com.zyj.plugin.common.view.SwitchView
+            android:id="@+id/switch_senseless_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="18dp"
+            android:layout_marginRight="18dp"
+            android:visibility="gone"
+            app:primaryColor="@color/colorPrimary"
+            app:shadowColor="@color/white" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/bg_gray"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="18dp"
+            android:text="@string/tv_pay_bind_car"
+            android:textColor="@color/tv_login_change"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingBottom="10dp">
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/nsv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never">
+
+                <LinearLayout
+                    android:id="@+id/ll_find_car"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_bind_car"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginRight="20dp"
+                        android:overScrollMode="never"
+                        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                        app:spanCount="3"
+                        tools:itemCount="3"
+                        tools:listitem="@layout/item_car_number"
+                        tools:spanCount="3" />
+
+                    <TextView
+                        android:id="@+id/tv_find_car_fail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="36dp"
+                        android:background="@color/ff555555_percent_50"
+                        android:paddingStart="16dp"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="12dp"
+                        android:paddingEnd="16dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="12dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:visibility="gone"
+                        tools:text="京H 08980没在地下停车场" />
+
+                </LinearLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_to_pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/bg_button_orange"
+            android:gravity="center"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:text="@string/to_pay"
+            android:textColor="@color/withe"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/rv_bind_car"
+            app:layout_constraintVertical_bias="0.956" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="18dp"
+            android:drawableStart="@mipmap/notice"
+            android:drawableLeft="@mipmap/notice"
+            android:text="@string/text_notice_pay"
+            android:textColor="@color/tv_login_change"
+            android:textSize="13sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+
+    <include layout="@layout/layout_online_pay_confirm" />
+</RelativeLayout>

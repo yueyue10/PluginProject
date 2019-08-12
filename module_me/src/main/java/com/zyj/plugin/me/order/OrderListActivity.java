@@ -12,6 +12,7 @@ import com.zyj.plugin.common.uitl.DialogUtil;
 import com.zyj.plugin.common.uitl.recyclerv.HorizontalDividerItemDecoration;
 import com.zyj.plugin.me.R;
 import com.zyj.plugin.me.R2;
+import com.zyj.plugin.me.order.detail.PayDialogFragment;
 import com.zyj.plugin.me.utils.JudgeUtils;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class OrderListActivity extends BaseRefreshActivity<OrderListPresenter> i
     RecyclerView recyclerView;
     OrderListAdapter orderListAdapter;
     ArrayList<OrderBean> orderBeans;
+    PayDialogFragment payDialogFragment;
 
     @Override
     public int onBindLayout() {
@@ -33,21 +35,9 @@ public class OrderListActivity extends BaseRefreshActivity<OrderListPresenter> i
 
     @Override
     public void initView() {
-        setTitleBack(getString(R.string.order_list_title));
+        setTitle(getString(R.string.order_list_title));
+        configRefreshLayout(true, true, true);
         recyclerView.setBackgroundColor(ColorUtils.string2Int("#F5F5F5"));
-        initRecyclerView();
-    }
-
-    @Override
-    protected int onBindRefreshLayout() {
-        return R.id.refreshLayout;
-    }
-
-    @Override
-    protected void configRefreshLayout() {
-        enableRefresh(true);
-        enableLoadMore(true);
-        autoLoadData();
     }
 
     @Override
@@ -55,7 +45,8 @@ public class OrderListActivity extends BaseRefreshActivity<OrderListPresenter> i
         clearData(orderBeans);
     }
 
-    private void initRecyclerView() {
+    @Override
+    public void initRecyclerView() {
         orderBeans = new ArrayList<>();
         orderListAdapter = new OrderListAdapter(R.layout.item_order_list, orderBeans);
         recyclerView.setAdapter(orderListAdapter);
@@ -85,13 +76,13 @@ public class OrderListActivity extends BaseRefreshActivity<OrderListPresenter> i
                 if (orderBeans.get(position).getTotalPrice() == 0) {
                     mPresenter.confirmPirceZeroOrder(orderBeans.get(position));
                 } else {
-//                        if (payDialogFragment == null) {
-//                            payDialogFragment = PayDialogFragment.getInstance(orderBeans.get(position).getTotalPrice());
-//                        }
-//                        payDialogFragment.setGoToPayListener(payType -> {
-//                            mPresenter.getPayProcess(orderBeans.get(position), payType);
-//                        });
-//                        payDialogFragment.show(getSupportFragmentManager(), "ShareFragment");
+                    if (payDialogFragment == null) {
+                        payDialogFragment = PayDialogFragment.getInstance(orderBeans.get(position).getTotalPrice());
+                    }
+                    payDialogFragment.setGoToPayListener(payType -> {
+                        mPresenter.getPayProcess(orderBeans.get(position), payType);
+                    });
+                    payDialogFragment.show(getSupportFragmentManager(), "ShareFragment");
                 }
             }
         });
@@ -146,5 +137,4 @@ public class OrderListActivity extends BaseRefreshActivity<OrderListPresenter> i
             autoLoadData();
         }
     }
-
 }

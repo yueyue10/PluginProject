@@ -1,6 +1,5 @@
 package com.zyj.plugin.me.fragment;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -39,7 +38,6 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
     MineModuleAdapter mineModuleAdapter;
     public ShareFragment shareFragment;
     private String download_url;
-    String[] phonePermission = new String[]{Manifest.permission.CALL_PHONE};
 
     public static Fragment newInstance() {
         return new MineFragment();
@@ -146,5 +144,4 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
         Glide.with(mActivity).load(picUrl).apply(new RequestOptions()
                 .error(R.mipmap.ic_launcher)).into(user_icon_iv);
     }
-
 }

@@ -59,4 +59,20 @@
         <item name="colorPrimary">@color/colorPrimary</item> <!--浅蓝色-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item> <!--深蓝色-->
     </style>
+
+    <style name="CustomPayCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">@drawable/checkbox_style</item>
+    </style>
+
+    <declare-styleable name="SwitchView">
+        <attr name="hasShadow" format="boolean" />
+        <attr name="primaryColor" format="color" />
+        <attr name="primaryColorDark" format="color" />
+        <attr name="offColor" format="color" />
+        <attr name="offColorDark" format="color" />
+        <attr name="shadowColor" format="color" />
+        <attr name="ratioAspect" format="float" />
+        <attr name="isOpened" format="boolean" />
+    </declare-styleable>
 </resources>

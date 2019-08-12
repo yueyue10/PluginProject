@@ -1,6 +1,7 @@
 package com.zyj.plugin.home.news;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
@@ -18,8 +19,12 @@ import com.zyj.plugin.login.utils.LoginUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 public class NewsListActivity extends BaseMvpActivity<NewsListPresenter> implements NewsListContract.View {
 
+    @BindView(R2.id.recyclerView)
+    RecyclerView recyclerView;
     NewsListAdapter newsListAdapter;
     List<NewsBean> newsBeans;
 
@@ -30,15 +35,15 @@ public class NewsListActivity extends BaseMvpActivity<NewsListPresenter> impleme
 
     @Override
     public void initView() {
-        setTitleBack(getString(R.string.informations));
+        setTitle(getString(R.string.informations));
         initRecyclerView();
     }
 
     public void initRecyclerView() {
         newsBeans = new ArrayList<>();
         newsListAdapter = new NewsListAdapter(R.layout.item_news_list, newsBeans);
-        initRecyclerView(R.id.recyclerView, newsListAdapter, new LinearLayoutManager(mActivity))
-                .addItemDecoration(new HorizontalDividerItemDecoration.Builder(this)
+        initRecyclerView(recyclerView, newsListAdapter, new LinearLayoutManager(mActivity),
+                new HorizontalDividerItemDecoration.Builder(this)
                         .colorResId(R.color.divider_news_list)
                         .sizeResId(R.dimen.dp_10).build());
     }

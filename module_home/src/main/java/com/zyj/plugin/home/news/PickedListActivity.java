@@ -7,7 +7,7 @@ public class PickedListActivity extends NewsListActivity {
 
     @Override
     public void initView() {
-        setTitleBack(getString(R.string.home_picked_news_title));
+        setTitle(getString(R.string.home_picked_news_title));
         initRecyclerView();
     }
 

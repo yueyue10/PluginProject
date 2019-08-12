@@ -1,8 +1,10 @@
 package com.zyj.plugin.common.mvp;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.zyj.plugin.common.R;
 import com.zyj.plugin.common.mvp.contract.BaseRefreshContract;
 import com.zyj.plugin.common.mvp.presenter.BaseRefreshPresenter;
 
@@ -17,12 +19,19 @@ import java.util.ArrayList;
  */
 public abstract class BaseRefreshFragment<P extends BaseRefreshPresenter> extends BaseMvpFragment<P> implements BaseRefreshContract.View {
 
+    protected RecyclerView recyclerView;
     protected SmartRefreshLayout mRefreshLayout;
 
     @Override
     public void initCommonView(View view) {
         super.initCommonView(view);
         initRefreshView(view);
+        recyclerView = view.findViewById(R.id.recyclerView);
+    }
+
+    @Override
+    public void initRecyclerView() {
+
     }
 
     public void initRefreshView(View view) {
@@ -40,25 +49,23 @@ public abstract class BaseRefreshFragment<P extends BaseRefreshPresenter> extend
      */
     protected abstract int onBindRefreshLayout();
 
-    /**
-     * 配置RefreshLayout
-     */
-    protected abstract void configRefreshLayout();
+    @Override
+    public void configRefreshLayout() {
+        configRefreshLayout(true, true, true);
+    }
+
+    @Override
+    public void configRefreshLayout(boolean enableRefresh, boolean enableLoadMore, boolean autoLoadMore) {
+        mRefreshLayout.setEnableRefresh(enableRefresh);
+        mRefreshLayout.setEnableLoadMore(enableLoadMore);
+        if (autoLoadMore)
+            autoLoadData();
+    }
 
     /**
      * 清除RefreshLayout里面需要刷新的数据
      */
     protected abstract void clearRefreshData();
-
-    @Override
-    public void enableRefresh(boolean b) {
-        mRefreshLayout.setEnableRefresh(b);
-    }
-
-    @Override
-    public void enableLoadMore(boolean b) {
-        mRefreshLayout.setEnableLoadMore(b);
-    }
 
     @Override
     public void stopRefreshView() {

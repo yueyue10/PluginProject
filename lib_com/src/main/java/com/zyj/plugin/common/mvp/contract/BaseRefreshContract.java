@@ -22,12 +22,12 @@ public interface BaseRefreshContract {
 
         void stopRefreshView();
 
-        void enableRefresh(boolean b);
-
-        void enableLoadMore(boolean b);
-
         void autoLoadData();
 
         void clearData(ArrayList<?>... lists);
+
+        void configRefreshLayout();
+
+        void configRefreshLayout(boolean enableRefresh, boolean enableLoadMore, boolean autoLoadMore);
     }
 }

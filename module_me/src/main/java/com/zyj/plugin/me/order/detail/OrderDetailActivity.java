@@ -50,11 +50,11 @@ public class OrderDetailActivity extends BaseMvpActivity<OrderDetailPresenter> i
 
     @Override
     public void initView() {
-        setTitleBack(getString(R.string.order_detail_title));
-        initRecyclerView();
+        setTitle(getString(R.string.order_detail_title));
     }
 
-    private void initRecyclerView() {
+    @Override
+    public void initRecyclerView() {
         keyValueBeans = new ArrayList<>();
         orderDetailAdapter = new OrderDetailAdapter(R.layout.item_order_detail, keyValueBeans);
         orderDetailAdapter.addFooterView(getFooterView());

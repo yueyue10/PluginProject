@@ -1,6 +1,7 @@
 package com.zyj.plugin.home.news.detail;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -23,6 +24,8 @@ import butterknife.OnClick;
 
 public class NewsDetailActivity extends BaseMvpActivity<NewsDetailPresenter> implements NewsDetailContract.View {
 
+    @BindView(R2.id.recyclerView)
+    RecyclerView recyclerView;
     HeaderView headerView;
     NewsDetailAdapter newsDetailAdapter;
     List<CommonContent> commonContents;
@@ -38,16 +41,16 @@ public class NewsDetailActivity extends BaseMvpActivity<NewsDetailPresenter> imp
 
     @Override
     public void initView() {
-        setTitleBack(getString(R.string.news_detail_title));
-        setRight(R.mipmap.transmit);
+        setTitle(getString(R.string.news_detail_title));
+        setRightImage(R.mipmap.transmit);
         initRecyclerView();
     }
 
-    private void initRecyclerView() {
+    public void initRecyclerView() {
         commonContents = new ArrayList<>();
         newsDetailAdapter = new NewsDetailAdapter(R.layout.item_news_detail, commonContents);
         newsDetailAdapter.addHeaderView(getHeaderView());
-        initRecyclerView(R.id.recyclerView, newsDetailAdapter, new LinearLayoutManager(mActivity));
+        initRecyclerView(recyclerView, newsDetailAdapter, new LinearLayoutManager(mActivity));
     }
 
     private View getHeaderView() {
