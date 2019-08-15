@@ -4,7 +4,7 @@ Android组件化探索 - mvp
 
 根据github开源框架来创建：https://github.com/mxdldev/android-mvp-mvvm-flytour
 
-![项目结构介绍](http://naotu.baidu.com/file/e8e137ea34f8d792f1c5f35ef4dd4fee?token=0273fd3b891ed796)
+[项目结构介绍][1]
 
 ### 构建过程记录：
 
@@ -17,3 +17,5 @@ Android组件化探索 - mvp
 - 6.测试dagger的发现：包含注解的fragment必须放在注解的activity里面才可以
 - 7.组件化mvp框架构建完成。新加入自定义标题栏，以及在基类里面写好对标题栏的配置。对下拉刷新布局配置。
 - 8.网络请求配置优化
+
+ [1]: http://naotu.baidu.com/file/e8e137ea34f8d792f1c5f35ef4dd4fee?token=0273fd3b891ed796
