@@ -1,8 +1,10 @@
 # PluginProject
 
-Android组件化探索
+Android组件化探索 - mvp
 
 根据github开源框架来创建：https://github.com/mxdldev/android-mvp-mvvm-flytour
+
+![项目结构介绍](http://naotu.baidu.com/file/e8e137ea34f8d792f1c5f35ef4dd4fee?token=0273fd3b891ed796)
 
 ### 构建过程记录：
 
