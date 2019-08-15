@@ -2,17 +2,13 @@ package com.zyj.plugin.home.utils;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 
-import com.zyj.plugin.common.data.bean.NewsBean;
 import com.zyj.plugin.home.news.NewsListActivity;
-import com.zyj.plugin.home.news.PickedListActivity;
 import com.zyj.plugin.home.news.detail.NewsDetailActivity;
 import com.zyj.plugin.home.news.picture.ShowPictureAc;
 import com.zyj.plugin.login.web.WebViewActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -33,10 +29,6 @@ public class JudgeUtils {
                 .putExtra("data", id));
     }
 
-    public static void startPickedListActivity(Context mActivity, List<NewsBean> newsBeans) {
-        mActivity.startActivity(new Intent(mActivity, PickedListActivity.class)
-                .putParcelableArrayListExtra("newsBeans", (ArrayList<? extends Parcelable>) newsBeans));
-    }
 
     public static void startNewsDetailAc(Context mActivity, int id) {
         mActivity.startActivity(new Intent(mActivity, NewsDetailActivity.class)

@@ -38,7 +38,6 @@ repositories {
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':lib_com')
     if (!isModule.toBoolean()) {
         implementation project(':module_home')
         implementation project(':module_me')

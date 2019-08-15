@@ -63,4 +63,13 @@ dependencies {
     api rootProject.ext.dependencies["picture_library"]
     api rootProject.ext.dependencies["status-bar"]
     api rootProject.ext.dependencies["multidex"]
+    api rootProject.ext.dependencies["lifecycle-extensions"]
+    annotationProcessor rootProject.ext.dependencies["lifecycle-compiler"]
+    //rx管理View的生命周期
+    api(rootProject.ext.dependencies.rxlifecycle) {
+        exclude group: 'com.android.support'
+    }
+    api(rootProject.ext.dependencies["rxlifecycle-components"]) {
+        exclude group: 'com.android.support'
+    }
 }
