@@ -1,6 +1,6 @@
 # PluginProject
 
-Android组件化探索
+Android组件化探索 -mvvm
 
 根据github开源框架来创建：https://github.com/mxdldev/android-mvp-mvvm-flytour
 
