@@ -11,11 +11,9 @@ Android组件化探索 - mvp
 
 #### 项目配置
 * 在project的gradle.properties里面配置【isModule】属性设置项目是单独模块还是整体工程。
-___
 #### 基础配置
 * config.gradle配置所有gradle依赖的第三方库版本。
 * 在project的build.gradle里面使用【apply from: "config.gradle"】引入config文件。
-___
 #### 关于butterknife使用的问题
 * 在项目的build.gradle里面配置
     ```
@@ -91,10 +89,8 @@ annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
 annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 ```
 因为在lib_com里面的注解依赖在这里没用效果，所以单独配置。
-___
 * 在HomeBindingModule里面配置Dagger需要注入的Activity。
 * 在HomeComponent里面配置Dagger需要注入的HttpModule和界面配置@Module。
-___
 * 在src/main/java/debug里面配置HomeApplication，使用HomeComponent注入。并且在src/main/module/AndroidManifest.xml里面注册HomeApplication，注册activity。配置好之后就可以在组件化模式下进行编译运行。
 * 在src/main/AndroidManifest.xml里面注册activity，但不需要注册application。配置好之后就可以在app壳里面使用arouter进行跳转。
 
@@ -145,7 +141,7 @@ api rootProject.ext.dependencies["rxandroid"]
 
 
 
-### 项目构建过程：
+## 三、项目构建过程：
 
 - 1.gradle里面的控件版本统一在config.gradle里面配置
 - 2.在lib_com模块的dependencies里面依赖一些常用的第三方库、在具体的module里面再依赖具体的第三方库
